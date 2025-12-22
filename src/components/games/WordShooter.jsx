@@ -299,17 +299,20 @@ export default function WordShooter({ onExit }) {
     }
 
     function spawnAsteroid() {
-      if (state.wordQueue.length === 0) return;
+      if (state.wordQueue.length === 0 || state.aliensSpawned >= state.maxAliensPerLevel) return;
       const word = state.wordQueue.shift();
       ctx.font = 'bold 16px Inter';
       const textWidth = ctx.measureText(word.primary.toUpperCase()).width + 30;
       const colors = ['#8b5cf6', '#10b981', '#f59e0b', '#ef4444', '#3b82f6', '#ec4899', '#06b6d4'];
+      const alienImage = alienImgs[Math.floor(Math.random() * alienImgs.length)];
       state.asteroids.push({
         id: Math.random(), x: Math.random() * (canvas.width - 200) + 100, y: -100,
-        vx: (Math.random() - 0.5) * 2, vy: 1 + Math.random() * 1, rotation: 0,
+        vx: (Math.random() - 0.5) * 2, vy: 1.5 + Math.random() * 1, rotation: 0,
         width: textWidth, height: 50, stage: 1, text: word.primary, wordData: word,
-        color: colors[Math.floor(Math.random() * colors.length)], health: 1
+        color: colors[Math.floor(Math.random() * colors.length)], health: 1,
+        alienImage: alienImage
       });
+      state.aliensSpawned++;
     }
 
     function explodeAsteroid(asteroid, isBomb = false) {
