@@ -489,16 +489,16 @@ export default function WordShooter({ onExit }) {
       }
       
       state.asteroids = state.asteroids.filter(ast => {
-        // Follow player ship
+        // Slowly float toward player ship
         const dx = state.playerX - ast.x;
         const dy = state.playerY - ast.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         if (dist > 0) {
-          ast.vx += (dx / dist) * 0.15;
-          ast.vy += (dy / dist) * 0.15;
+          ast.vx += (dx / dist) * 0.05;
+          ast.vy += (dy / dist) * 0.05;
         }
-        ast.vx *= 0.98;
-        ast.vy *= 0.98;
+        ast.vx *= 0.95;
+        ast.vy *= 0.95;
         ast.x += ast.vx; ast.y += ast.vy;
         drawAsteroid(ast);
         for(let i = state.bullets.length - 1; i >= 0; i--) {
