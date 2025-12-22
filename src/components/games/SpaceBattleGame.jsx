@@ -74,6 +74,52 @@ export default function SpaceBattleGame({ onExit }) {
         { id: 'global', label: 'Global', color: 'from-indigo-600 to-indigo-700' },
     ];
 
+    // Level-specific questions - 5 questions per level
+    const LEVEL_QUESTIONS = {
+        1: [
+            { question: "Is agentic AI capable of making autonomous decisions without human input?", answer: true, explanation: "Agentic AI is designed to make decisions and take actions independently based on its programming and goals.", tip: "Think about AI systems that learn and adapt over time." },
+            { question: "Can machine learning models only work with numerical data?", answer: false, explanation: "Machine learning can process various data types including text, images, audio, and video through appropriate preprocessing.", tip: "Consider how AI handles images and text in everyday applications." },
+            { question: "Is Python the most widely used programming language for AI development?", answer: true, explanation: "Python is the dominant language in AI due to its extensive libraries like TensorFlow, PyTorch, and scikit-learn.", tip: "Think about popular AI frameworks and their language support." },
+            { question: "Do neural networks always require labeled data for training?", answer: false, explanation: "Unsupervised learning and self-supervised learning methods can train neural networks without labeled data.", tip: "Consider different types of machine learning approaches." },
+            { question: "Is reinforcement learning inspired by behavioral psychology?", answer: true, explanation: "Reinforcement learning is based on concepts from behavioral psychology, particularly reward-based learning.", tip: "Think about how animals and humans learn through rewards and punishments." }
+        ],
+        2: [
+            { question: "Is quantum computing capable of solving all computational problems faster than classical computers?", answer: false, explanation: "Quantum computers excel at specific problems but aren't universally faster for all computational tasks.", tip: "Consider the strengths and limitations of different computing paradigms." },
+            { question: "Can blockchain technology function without a distributed network?", answer: false, explanation: "Blockchain's core value comes from decentralization and consensus across multiple nodes in a network.", tip: "Think about what makes blockchain secure and trustworthy." },
+            { question: "Is edge computing designed to reduce latency by processing data closer to its source?", answer: true, explanation: "Edge computing processes data near where it's generated, reducing the need to send data to distant cloud servers.", tip: "Consider IoT devices and real-time processing needs." },
+            { question: "Are all AI models considered 'black boxes' with unexplainable decisions?", answer: false, explanation: "Explainable AI (XAI) techniques can provide transparency into many AI model decisions.", tip: "Think about the growing field of interpretable machine learning." },
+            { question: "Is 5G technology primarily about faster download speeds?", answer: false, explanation: "5G offers low latency, high device density, and network slicing in addition to faster speeds.", tip: "Consider the broader infrastructure improvements in 5G networks." }
+        ],
+        3: [
+            { question: "Is CRISPR-Cas9 a gene editing technology discovered in bacteria?", answer: true, explanation: "CRISPR-Cas9 was adapted from a natural defense mechanism found in bacteria against viruses.", tip: "Think about how nature inspired this revolutionary technology." },
+            { question: "Can renewable energy sources provide 100% of global energy needs today?", answer: false, explanation: "While growing rapidly, renewable energy faces storage, distribution, and intermittency challenges for complete global coverage.", tip: "Consider current infrastructure and technology limitations." },
+            { question: "Is nuclear fusion different from nuclear fission?", answer: true, explanation: "Fusion combines light nuclei to release energy, while fission splits heavy nuclei. Fusion is cleaner but harder to achieve.", tip: "Think about how the sun generates energy versus nuclear power plants." },
+            { question: "Are all biodegradable plastics actually environmentally friendly?", answer: false, explanation: "Some biodegradable plastics require specific industrial conditions to break down and may not decompose in natural environments.", tip: "Consider the conditions needed for decomposition." },
+            { question: "Is photosynthesis a process that converts light energy into chemical energy?", answer: true, explanation: "Plants use photosynthesis to convert sunlight, water, and CO2 into glucose and oxygen.", tip: "Think about how plants create their own food." }
+        ],
+        4: [
+            { question: "Is market capitalization calculated by multiplying stock price by total outstanding shares?", answer: true, explanation: "Market cap = share price × number of outstanding shares, representing the company's total market value.", tip: "Think about how company size is measured in the stock market." },
+            { question: "Can cryptocurrency transactions be reversed like credit card payments?", answer: false, explanation: "Most cryptocurrency transactions are irreversible once confirmed on the blockchain.", tip: "Consider the decentralized nature of blockchain technology." },
+            { question: "Is compound interest calculated only on the initial principal amount?", answer: false, explanation: "Compound interest is calculated on the principal plus accumulated interest from previous periods.", tip: "Think about how your savings grow exponentially over time." },
+            { question: "Do index funds typically have higher fees than actively managed funds?", answer: false, explanation: "Index funds usually have much lower fees because they passively track market indices rather than actively picking stocks.", tip: "Consider the effort and cost difference between passive and active management." },
+            { question: "Is diversification a strategy to reduce investment risk?", answer: true, explanation: "Diversification spreads investments across different assets to minimize the impact of any single investment's poor performance.", tip: "Think about the saying 'don't put all your eggs in one basket.'" }
+        ],
+        5: [
+            { question: "Is cardiovascular disease the leading cause of death globally?", answer: true, explanation: "Heart disease and stroke are the world's leading causes of death, responsible for millions of deaths annually.", tip: "Consider major health challenges in both developed and developing countries." },
+            { question: "Can antibiotics effectively treat viral infections?", answer: false, explanation: "Antibiotics only work against bacterial infections, not viral infections like the common cold or flu.", tip: "Think about why doctors don't prescribe antibiotics for colds." },
+            { question: "Is the human brain fully developed by age 18?", answer: false, explanation: "The prefrontal cortex, responsible for decision-making and impulse control, continues developing until around age 25.", tip: "Consider when people are considered fully mature neurologically." },
+            { question: "Does regular exercise improve mental health as well as physical health?", answer: true, explanation: "Exercise releases endorphins, reduces stress hormones, and has been shown to alleviate symptoms of depression and anxiety.", tip: "Think about the mind-body connection in wellness." },
+            { question: "Is BMI (Body Mass Index) a perfect measure of individual health?", answer: false, explanation: "BMI doesn't account for muscle mass, bone density, or body composition, and can be misleading for athletes and certain populations.", tip: "Consider the limitations of using just height and weight for health assessment." }
+        ],
+        6: [
+            { question: "Is climate change primarily driven by human activities?", answer: true, explanation: "Scientific consensus shows that human greenhouse gas emissions are the dominant cause of current global warming.", tip: "Think about industrial activities and their atmospheric impact since the 1800s." },
+            { question: "Can artificial intelligence fully replace human creativity?", answer: false, explanation: "While AI can assist and augment creativity, human creativity involves consciousness, emotions, and cultural understanding that AI lacks.", tip: "Consider the unique aspects of human imagination and cultural context." },
+            { question: "Is cybersecurity becoming more important as society becomes more digital?", answer: true, explanation: "With increasing digitalization of critical infrastructure, personal data, and services, cybersecurity is crucial for modern society.", tip: "Think about how much of our lives depends on digital systems today." },
+            { question: "Does social media usage directly cause depression in all users?", answer: false, explanation: "While excessive social media use is linked to mental health issues, the relationship is complex and varies by individual and usage patterns.", tip: "Consider the nuanced relationship between technology use and mental health." },
+            { question: "Is space exploration only about scientific discovery?", answer: false, explanation: "Space exploration also drives technological innovation, economic opportunities, international cooperation, and inspires future generations.", tip: "Think about the broader impacts of space programs on society." }
+        ]
+    };
+
     useEffect(() => {
         // Only load the first tab initially
         loadTabTopics('trending');
@@ -150,16 +196,32 @@ export default function SpaceBattleGame({ onExit }) {
         
         try {
             const topicLabel = topic === 'custom' ? searchQuery : topic.label;
-            const result = await base44.integrations.Core.InvokeLLM({
-                prompt: `Generate 10 educational Yes/No questions for: "${topicLabel}". Each should test real knowledge. Include a helpful tip for each question. Return: { "questions": [{ "question": "Is X true?", "answer": true, "explanation": "Brief explanation", "tip": "A helpful hint to guide thinking" }] }`,
-                response_json_schema: {
-                    type: "object",
-                    properties: {
-                        questions: { type: "array", items: { type: "object", properties: { question: { type: "string" }, answer: { type: "boolean" }, explanation: { type: "string" }, tip: { type: "string" } } } }
-                    }
+            
+            // Use predefined questions if available, otherwise generate with AI
+            const allLevelQuestions = [];
+            for (let level = 1; level <= 6; level++) {
+                if (LEVEL_QUESTIONS[level]) {
+                    allLevelQuestions.push(...LEVEL_QUESTIONS[level]);
                 }
-            });
-            setQuestions(result.questions || []);
+            }
+            
+            if (allLevelQuestions.length > 0) {
+                // Use predefined questions
+                setQuestions(allLevelQuestions);
+            } else {
+                // Generate questions with AI (fallback)
+                const result = await base44.integrations.Core.InvokeLLM({
+                    prompt: `Generate 10 educational Yes/No questions for: "${topicLabel}". Each should test real knowledge. Include a helpful tip for each question. Return: { "questions": [{ "question": "Is X true?", "answer": true, "explanation": "Brief explanation", "tip": "A helpful hint to guide thinking" }] }`,
+                    response_json_schema: {
+                        type: "object",
+                        properties: {
+                            questions: { type: "array", items: { type: "object", properties: { question: { type: "string" }, answer: { type: "boolean" }, explanation: { type: "string" }, tip: { type: "string" } } } }
+                        }
+                    }
+                });
+                setQuestions(result.questions || []);
+            }
+            
             setGameScore(0);
             setScore(0);
             setCurrentQuestion(0);
@@ -1134,7 +1196,9 @@ export default function SpaceBattleGame({ onExit }) {
     }
     
     if (screen === 'quiz') {
-        const q = questions[currentQuestion];
+        // Get question based on current level - 5 questions per level
+        const levelQuestionIndex = ((currentLevel - 1) * 5) + (currentQuestion % 5);
+        const q = questions[levelQuestionIndex] || questions[currentQuestion];
         const questionsNeeded = levelComplete ? currentLevel + 1 : questions.length;
         return (
             <div className="fixed inset-0 bg-[#0a0f1a] z-[9999] flex items-center justify-center">
