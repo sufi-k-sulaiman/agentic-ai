@@ -663,11 +663,30 @@ export default function TetrisGalaxy({ onExit }) {
                         if (value) draw3DBlock(px + dx * pSize, py + dy * pSize, pSize - 1, nextPiece.color, nextPiece.glow);
                     });
                 });
-                // Proportionally smaller word
+                // Proportionally smaller word with wrapping
                 ctx.fillStyle = nextPiece.glow;
                 ctx.font = 'bold 24px Arial';
-                const wordText = nextPiece.word.length > 12 ? nextPiece.word.substring(0, 10) + '...' : nextPiece.word;
-                ctx.fillText(wordText, panelX + panelWidth/2, panelY + 180);
+                const maxWordWidth = panelWidth - 10;
+                const words = nextPiece.word.split(' ');
+                let lines = [];
+                let currentLine = '';
+                
+                for (let word of words) {
+                    const testLine = currentLine ? currentLine + ' ' + word : word;
+                    const metrics = ctx.measureText(testLine);
+                    if (metrics.width > maxWordWidth && currentLine) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = testLine;
+                    }
+                }
+                if (currentLine) lines.push(currentLine);
+                
+                // Draw lines
+                lines.forEach((line, i) => {
+                    ctx.fillText(line, panelX + panelWidth/2, panelY + 180 + i * 28);
+                });
             }
 
             // Stats below next piece - no boxes, just text
