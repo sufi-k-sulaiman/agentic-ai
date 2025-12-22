@@ -1138,7 +1138,10 @@ export default function SpaceBattleGame({ onExit }) {
     }, [screen]);
 
     const handleAnswer = (answer) => {
-        const correct = questions[currentQuestion]?.answer === answer;
+        const levelQuestionIndex = ((currentLevel - 1) * 5) + (currentQuestion % 5);
+        const q = questions[levelQuestionIndex] || questions[currentQuestion];
+        const correct = q?.answer === answer;
+        
         if (correct) {
             setScore(s => s + 1);
             if (score + 1 === 3) setAwards(a => [...a, 'bronze']);
@@ -1146,24 +1149,26 @@ export default function SpaceBattleGame({ onExit }) {
             if (score + 1 === 10) setAwards(a => [...a, 'gold']);
         }
         
-        // If level complete and answered enough questions, proceed to next level
+        // If level complete quiz
         if (levelComplete) {
-            if (correct && score >= currentLevel) {
-                // Move to next level
-                setCurrentLevel(c => c + 1);
-                setCurrentQuestion(0);
-                setLevelComplete(false);
-                setScreen('game');
-            } else if (currentQuestion < Math.min(questions.length - 1, currentLevel + 1)) {
+            const questionsAnswered = (currentQuestion % 5) + 1;
+            
+            // Must answer all 5 questions
+            if (questionsAnswered < 5) {
                 setCurrentQuestion(c => c + 1);
-            } else if (!correct) {
-                // Failed quiz - game over
-                setScreen('results');
             } else {
-                setCurrentLevel(c => c + 1);
-                setCurrentQuestion(0);
-                setLevelComplete(false);
-                setScreen('game');
+                // All 5 questions answered - check if passed
+                if (score >= currentLevel) {
+                    // Move to next level
+                    setCurrentLevel(c => c + 1);
+                    setCurrentQuestion(0);
+                    setScore(0);
+                    setLevelComplete(false);
+                    setScreen('game');
+                } else {
+                    // Failed quiz - game over
+                    setScreen('results');
+                }
             }
         } else {
             // Normal game over quiz
