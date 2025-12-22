@@ -208,11 +208,11 @@ export default function WordShooter({ onExit }) {
 
     const state = {
       playerX: canvas.width / 2, playerY: canvas.height - 100, playerWidth: 60, playerHealth: 5,
-      bullets: [], asteroids: [], particles: [], floatingTexts: [], stars: [],
+      bullets: [], asteroids: [], aliens: [], particles: [], floatingTexts: [], stars: [],
       score: 0, combo: 0, maxCombo: 0, wordsCompleted: 0, totalWords: wordData.length, bombs: 3,
       paused: false, gameOver: false, shockwave: null, flash: 0, shake: 0,
       spawnTimer: 0, spawnRate: 120, wordQueue: [...wordData].sort(() => Math.random() - 0.5),
-      aliensSpawned: 0, maxAliensPerLevel: 10,
+      aliensSpawned: 0, maxAliensPerLevel: 10, alienSpawnTimer: 0, alienSpawnRate: 180,
     };
 
     for(let i=0; i<300; i++) {
@@ -295,21 +295,43 @@ export default function WordShooter({ onExit }) {
       state.flash = 30;
       state.asteroids.forEach(ast => explodeAsteroid(ast, true));
       state.asteroids = [];
+      state.aliens.forEach(alien => {
+        for(let p=0; p<50; p++) {
+          const angle = (Math.PI * 2 * p) / 50;
+          const speed = Math.random() * 12 + 6;
+          state.particles.push({ x: alien.x, y: alien.y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, life: 50, maxLife: 50, size: Math.random() * 5 + 3, color: '#ef4444' });
+        }
+      });
+      state.aliens = [];
       state.shake = 20;
     }
 
     function spawnAsteroid() {
-      if (state.wordQueue.length === 0 || state.aliensSpawned >= state.maxAliensPerLevel) return;
+      if (state.wordQueue.length === 0) return;
       const word = state.wordQueue.shift();
       ctx.font = 'bold 16px Inter';
       const textWidth = ctx.measureText(word.primary.toUpperCase()).width + 30;
       const colors = ['#8b5cf6', '#10b981', '#f59e0b', '#ef4444', '#3b82f6', '#ec4899', '#06b6d4'];
-      const alienImage = alienImgs[Math.floor(Math.random() * alienImgs.length)];
       state.asteroids.push({
         id: Math.random(), x: Math.random() * (canvas.width - 200) + 100, y: -100,
         vx: (Math.random() - 0.5) * 2, vy: 1.5 + Math.random() * 1, rotation: 0,
         width: textWidth, height: 50, stage: 1, text: word.primary, wordData: word,
-        color: colors[Math.floor(Math.random() * colors.length)], health: 1,
+        color: colors[Math.floor(Math.random() * colors.length)], health: 1
+      });
+    }
+
+    function spawnAlien() {
+      if (state.aliensSpawned >= state.maxAliensPerLevel) return;
+      const alienImage = alienImgs[Math.floor(Math.random() * alienImgs.length)];
+      state.aliens.push({
+        id: Math.random(), 
+        x: Math.random() * (canvas.width - 200) + 100, 
+        y: -120,
+        vx: (Math.random() - 0.5) * 1.5, 
+        vy: 1 + Math.random() * 0.5,
+        width: 80, 
+        height: 80,
+        health: 1,
         alienImage: alienImage
       });
       state.aliensSpawned++;
@@ -369,14 +391,6 @@ export default function WordShooter({ onExit }) {
     function drawAsteroid(ast) {
       ctx.save();
       ctx.translate(ast.x, ast.y);
-      
-      // Draw alien image if loaded
-      if (ast.alienImage && ast.alienImage.complete) {
-        const alienSize = 80;
-        ctx.drawImage(ast.alienImage, -alienSize/2, -alienSize/2 - 20, alienSize, alienSize);
-      }
-      
-      // Draw word bubble below alien
       const w = ast.width, h = ast.height, r = h / 2;
       ctx.fillStyle = ast.color;
       ctx.shadowBlur = 15;
@@ -395,6 +409,15 @@ export default function WordShooter({ onExit }) {
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(ast.text.toUpperCase(), 0, 0);
+      ctx.restore();
+    }
+
+    function drawAlien(alien) {
+      ctx.save();
+      ctx.translate(alien.x, alien.y);
+      if (alien.alienImage && alien.alienImage.complete) {
+        ctx.drawImage(alien.alienImage, -alien.width/2, -alien.height/2, alien.width, alien.height);
+      }
       ctx.restore();
     }
 
@@ -453,9 +476,15 @@ export default function WordShooter({ onExit }) {
       });
       
       state.spawnTimer++;
-      if (state.spawnTimer >= state.spawnRate && state.wordQueue.length > 0 && state.aliensSpawned < state.maxAliensPerLevel) { 
+      if (state.spawnTimer >= state.spawnRate && state.wordQueue.length > 0) { 
         spawnAsteroid(); 
         state.spawnTimer = 0; 
+      }
+
+      state.alienSpawnTimer++;
+      if (state.alienSpawnTimer >= state.alienSpawnRate && state.aliensSpawned < state.maxAliensPerLevel) {
+        spawnAlien();
+        state.alienSpawnTimer = 0;
       }
       
       state.asteroids = state.asteroids.filter(ast => {
@@ -468,6 +497,27 @@ export default function WordShooter({ onExit }) {
           }
         }
         if (ast.y > h + 100) { state.playerHealth--; state.combo = 0; if (state.playerHealth <= 0) state.gameOver = true; return false; }
+        return true;
+      });
+
+      state.aliens = state.aliens.filter(alien => {
+        alien.x += alien.vx; alien.y += alien.vy;
+        drawAlien(alien);
+        for(let i = state.bullets.length - 1; i >= 0; i--) {
+          const b = state.bullets[i];
+          if (b.x > alien.x - alien.width/2 && b.x < alien.x + alien.width/2 && b.y > alien.y - alien.height/2 && b.y < alien.y + alien.height/2) {
+            state.bullets.splice(i, 1);
+            // Explode alien
+            for(let p=0; p<30; p++) {
+              const angle = (Math.PI * 2 * p) / 30;
+              const speed = Math.random() * 8 + 4;
+              state.particles.push({ x: alien.x, y: alien.y, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, life: 40, maxLife: 40, size: Math.random() * 4 + 2, color: '#ef4444' });
+            }
+            state.score += 150;
+            return false;
+          }
+        }
+        if (alien.y > h + 100) { state.playerHealth--; if (state.playerHealth <= 0) state.gameOver = true; return false; }
         return true;
       });
       
