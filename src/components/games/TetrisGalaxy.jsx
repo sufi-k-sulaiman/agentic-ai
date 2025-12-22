@@ -935,7 +935,7 @@ export default function TetrisGalaxy({ onExit }) {
                                     >
                                         <TopicIcon className="w-5 h-5 text-purple-500 mb-2" />
                                         <div className="text-sm font-bold text-gray-900 line-clamp-2">{topic.label}</div>
-                                        <div className="text-xs text-purple-400 line-clamp-1 mt-1">{topic.description}</div>
+                                        <div className="text-xs text-purple-400 line-clamp-2 mt-1">{topic.description}</div>
                                     </button>
                                 );
                             })}
