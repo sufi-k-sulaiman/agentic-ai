@@ -654,8 +654,8 @@ export default function TetrisGalaxy({ onExit }) {
             ctx.fillText('NEXT', panelX + panelWidth/2, panelY + 20);
 
             if (nextPiece) {
-                // 2x bigger pieces
-                const pSize = 28;
+                // 4x bigger pieces (doubled from 2x)
+                const pSize = 56;
                 const px = panelX + panelWidth/2 - (nextPiece.shape[0].length * pSize) / 2;
                 const py = panelY + 35;
                 nextPiece.shape.forEach((row, dy) => {
@@ -663,15 +663,15 @@ export default function TetrisGalaxy({ onExit }) {
                         if (value) draw3DBlock(px + dx * pSize, py + dy * pSize, pSize - 1, nextPiece.color, nextPiece.glow);
                     });
                 });
-                // 3x bigger word
+                // 6x bigger word (doubled from 3x)
                 ctx.fillStyle = nextPiece.glow;
-                ctx.font = 'bold 18px Arial';
+                ctx.font = 'bold 36px Arial';
                 const wordText = nextPiece.word.length > 12 ? nextPiece.word.substring(0, 10) + '...' : nextPiece.word;
-                ctx.fillText(wordText, panelX + panelWidth/2, panelY + 140);
+                ctx.fillText(wordText, panelX + panelWidth/2, panelY + 240);
             }
 
             // Stats below next piece - no boxes, just text
-            const statsY = panelY + 170;
+            const statsY = panelY + 280;
 
             // Score
             ctx.fillStyle = '#fbbf24';
