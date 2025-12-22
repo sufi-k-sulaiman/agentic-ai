@@ -211,11 +211,11 @@ export default function SpaceBattleGame({ onExit }) {
             } else {
                 // Generate questions with AI (fallback)
                 const result = await base44.integrations.Core.InvokeLLM({
-                    prompt: `Generate 10 educational Yes/No questions for: "${topicLabel}". Each should test real knowledge. Include a helpful tip for each question. Return: { "questions": [{ "question": "Is X true?", "answer": true, "explanation": "Brief explanation", "tip": "A helpful hint to guide thinking" }] }`,
+                    prompt: `Generate 10 educational multiple choice questions for: "${topicLabel}". Each should test real knowledge. Include 4 options (A, B, C, D) with one correct answer. Include a helpful tip for each question. Return: { "questions": [{ "question": "What is X?", "options": ["Option A", "Option B", "Option C", "Option D"], "correctAnswer": 0, "explanation": "Brief explanation", "tip": "A helpful hint to guide thinking" }] }`,
                     response_json_schema: {
                         type: "object",
                         properties: {
-                            questions: { type: "array", items: { type: "object", properties: { question: { type: "string" }, answer: { type: "boolean" }, explanation: { type: "string" }, tip: { type: "string" } } } }
+                            questions: { type: "array", items: { type: "object", properties: { question: { type: "string" }, options: { type: "array", items: { type: "string" } }, correctAnswer: { type: "number" }, explanation: { type: "string" }, tip: { type: "string" } } } }
                         }
                     }
                 });
@@ -1137,16 +1137,18 @@ export default function SpaceBattleGame({ onExit }) {
         };
     }, [screen]);
 
-    const handleAnswer = (answer) => {
+    const handleAnswer = (answerIndex) => {
         const levelQuestionIndex = ((currentLevel - 1) * 5) + (currentQuestion % 5);
         const q = questions[levelQuestionIndex] || questions[currentQuestion];
-        const correct = q?.answer === answer;
+        const correct = q?.correctAnswer === answerIndex;
+        
+        const newScore = correct ? score + 1 : score;
+        setScore(newScore);
         
         if (correct) {
-            setScore(s => s + 1);
-            if (score + 1 === 3) setAwards(a => [...a, 'bronze']);
-            if (score + 1 === 7) setAwards(a => [...a, 'silver']);
-            if (score + 1 === 10) setAwards(a => [...a, 'gold']);
+            if (newScore === 3) setAwards(a => [...a, 'bronze']);
+            if (newScore === 7) setAwards(a => [...a, 'silver']);
+            if (newScore === 10) setAwards(a => [...a, 'gold']);
         }
         
         // If level complete quiz
@@ -1157,9 +1159,9 @@ export default function SpaceBattleGame({ onExit }) {
             if (questionsAnswered < 5) {
                 setCurrentQuestion(c => c + 1);
             } else {
-                // All 5 questions answered - check if passed
-                if (score >= currentLevel) {
-                    // Move to next level
+                // All 5 questions answered - check if passed (need 3/5)
+                if (newScore >= 3) {
+                    // Move to next level automatically
                     setCurrentLevel(c => c + 1);
                     setCurrentQuestion(0);
                     setScore(0);
@@ -1225,7 +1227,7 @@ export default function SpaceBattleGame({ onExit }) {
                             </div>
                         </div>
                         
-                        <h3 className="text-2xl text-white mb-6 leading-relaxed text-center">{q?.question}</h3>
+                        <h3 className="text-2xl text-white mb-6 leading-relaxed">{q?.question}</h3>
                         
                         {/* Tip Section */}
                         {q?.tip && (
@@ -1240,17 +1242,18 @@ export default function SpaceBattleGame({ onExit }) {
                             </div>
                         )}
                         
-                        <div className="flex gap-4 justify-center">
-                            <Button onClick={() => handleAnswer(false)} 
-                                className="w-40 h-14 text-lg font-mono border-2 border-red-500/50 bg-transparent hover:bg-red-500/20 text-red-400 rounded-full">
-                                No
-                            </Button>
-                            <Button onClick={() => handleAnswer(true)} 
-                                className="w-40 h-14 text-lg font-mono border-2 border-green-500/50 bg-transparent hover:bg-green-500/20 text-green-400 rounded-full">
-                                Yes
-                            </Button>
+                        <div className="grid grid-cols-1 gap-3">
+                            {q?.options?.map((option, i) => (
+                                <Button 
+                                    key={i}
+                                    onClick={() => handleAnswer(i)} 
+                                    className="w-full h-16 text-left px-6 text-base font-mono border-2 border-cyan-500/50 bg-transparent hover:bg-cyan-500/20 text-cyan-400 rounded-lg flex items-center gap-4">
+                                    <span className="text-cyan-300 font-bold text-lg">{String.fromCharCode(65 + i)}.</span>
+                                    <span className="flex-1">{option}</span>
+                                </Button>
+                            ))}
                         </div>
-                        <p className="text-center text-gray-500 mt-6 font-mono">Question {(currentQuestion % 5) + 1} / 5</p>
+                        <p className="text-center text-gray-500 mt-6 font-mono">Question {(currentQuestion % 5) + 1} / 5 • Correct: {score}</p>
                     </div>
                 </div>
             </div>

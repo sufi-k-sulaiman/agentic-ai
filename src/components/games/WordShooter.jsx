@@ -145,11 +145,11 @@ export default function WordShooter({ onExit }) {
     try {
       // Generate quiz questions for this level
       const quizResult = await base44.integrations.Core.InvokeLLM({
-        prompt: `Generate 5 educational Yes/No questions about "${currentTopic} - ${level.name}". Test real knowledge. Include a helpful tip for each. Return: { "questions": [{ "question": "Is X true?", "answer": true/false, "explanation": "Brief explanation", "tip": "A helpful hint" }] }`,
+        prompt: `Generate 5 educational multiple choice questions about "${currentTopic} - ${level.name}". Test real knowledge. Include 4 options (A, B, C, D) with one correct answer. Include a helpful tip for each. Return: { "questions": [{ "question": "What is X?", "options": ["Option A", "Option B", "Option C", "Option D"], "correctAnswer": 0, "explanation": "Brief explanation", "tip": "A helpful hint" }] }`,
         response_json_schema: {
           type: "object",
           properties: {
-            questions: { type: "array", items: { type: "object", properties: { question: { type: "string" }, answer: { type: "boolean" }, explanation: { type: "string" }, tip: { type: "string" } } } }
+            questions: { type: "array", items: { type: "object", properties: { question: { type: "string" }, options: { type: "array", items: { type: "string" } }, correctAnswer: { type: "number" }, explanation: { type: "string" }, tip: { type: "string" } } } }
           }
         }
       });
@@ -182,9 +182,9 @@ export default function WordShooter({ onExit }) {
     setScreen('quiz');
   };
 
-  const handleQuizAnswer = (answer) => {
+  const handleQuizAnswer = (answerIndex) => {
     const q = quizQuestions[currentQuestion];
-    const correct = q?.answer === answer;
+    const correct = q?.correctAnswer === answerIndex;
     
     const newQuizScore = correct ? quizScore + 1 : quizScore;
     setQuizScore(newQuizScore);
@@ -196,6 +196,14 @@ export default function WordShooter({ onExit }) {
       if (newQuizScore >= 3) {
         setTotalScore(prev => prev + gameScore);
         setCompletedLevels(prev => [...prev, currentLevel]);
+        
+        // Auto-load next level if available and not last level
+        const nextLevelIndex = subLevels.findIndex(l => l.id === currentLevel) + 1;
+        if (nextLevelIndex < subLevels.length) {
+          const nextLevel = subLevels[nextLevelIndex];
+          setTimeout(() => handlePlayLevel(nextLevel), 1500);
+          return;
+        }
       }
       setScreen('levels');
     }
@@ -721,7 +729,7 @@ export default function WordShooter({ onExit }) {
               </div>
             </div>
             
-            <h3 className="text-2xl text-white mb-6 leading-relaxed text-center">{q.question}</h3>
+            <h3 className="text-2xl text-white mb-6 leading-relaxed">{q.question}</h3>
             
             {q.tip && (
               <div className="bg-amber-900/30 border border-amber-500/40 rounded-lg p-4 mb-6">
@@ -735,15 +743,16 @@ export default function WordShooter({ onExit }) {
               </div>
             )}
             
-            <div className="flex gap-4 justify-center">
-              <Button onClick={() => handleQuizAnswer(false)} 
-                className="w-40 h-14 text-lg font-mono border-2 border-red-500/50 bg-transparent hover:bg-red-500/20 text-red-400 rounded-full">
-                No
-              </Button>
-              <Button onClick={() => handleQuizAnswer(true)} 
-                className="w-40 h-14 text-lg font-mono border-2 border-green-500/50 bg-transparent hover:bg-green-500/20 text-green-400 rounded-full">
-                Yes
-              </Button>
+            <div className="grid grid-cols-1 gap-3">
+              {q?.options?.map((option, i) => (
+                <Button 
+                  key={i}
+                  onClick={() => handleQuizAnswer(i)} 
+                  className="w-full h-16 text-left px-6 text-base font-mono border-2 border-purple-500/50 bg-transparent hover:bg-purple-500/20 text-purple-300 rounded-lg flex items-center gap-4">
+                  <span className="text-purple-400 font-bold text-lg">{String.fromCharCode(65 + i)}.</span>
+                  <span className="flex-1">{option}</span>
+                </Button>
+              ))}
             </div>
             
             <div className="mt-6 text-center">
