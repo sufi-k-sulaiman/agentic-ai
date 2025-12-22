@@ -22,6 +22,10 @@ export default function WordShooter({ onExit }) {
   const [subLevels, setSubLevels] = useState([]);
   const [completedLevels, setCompletedLevels] = useState([]);
   const [totalScore, setTotalScore] = useState(0);
+  const [quizQuestions, setQuizQuestions] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [quizScore, setQuizScore] = useState(0);
+  const [gameScore, setGameScore] = useState(0);
   const canvasRef = useRef(null);
 
   const TABS = [
@@ -154,18 +158,56 @@ export default function WordShooter({ onExit }) {
     }
   };
 
-  const handlePlayLevel = (level) => {
+  const handlePlayLevel = async (level) => {
     setCurrentLevel(level.id);
+    // Generate quiz questions for this level
+    try {
+      const quizResult = await base44.integrations.Core.InvokeLLM({
+        prompt: `Generate 5 educational Yes/No questions about "${currentTopic} - ${level.name}". Test real knowledge. Include a helpful tip for each. Return: { "questions": [{ "question": "Is X true?", "answer": true/false, "explanation": "Brief explanation", "tip": "A helpful hint" }] }`,
+        response_json_schema: {
+          type: "object",
+          properties: {
+            questions: { type: "array", items: { type: "object", properties: { question: { type: "string" }, answer: { type: "boolean" }, explanation: { type: "string" }, tip: { type: "string" } } } }
+          }
+        }
+      });
+      setQuizQuestions(quizResult.questions || []);
+    } catch (error) {
+      console.error('Failed to generate quiz:', error);
+      setQuizQuestions([]);
+    }
     generateWordData(level.name);
   };
 
   const handleLevelComplete = (score) => {
-    setTotalScore(prev => prev + score);
-    const levelId = subLevels[currentLevel - 1]?.id;
-    if (levelId && !completedLevels.includes(levelId)) {
-      setCompletedLevels(prev => [...prev, levelId]);
+    setGameScore(score);
+    setCurrentQuestion(0);
+    setQuizScore(0);
+    setScreen('quiz');
+  };
+
+  const handleQuizAnswer = (answer) => {
+    const q = quizQuestions[currentQuestion];
+    const correct = q?.answer === answer;
+    
+    if (correct) {
+      setQuizScore(prev => prev + 1);
     }
-    setScreen('levels');
+    
+    if (currentQuestion < quizQuestions.length - 1) {
+      setCurrentQuestion(prev => prev + 1);
+    } else {
+      // Quiz complete - check if passed (need at least 3/5)
+      const finalScore = quizScore + (correct ? 1 : 0);
+      if (finalScore >= 3) {
+        setTotalScore(prev => prev + gameScore);
+        const levelId = subLevels[currentLevel - 1]?.id;
+        if (levelId && !completedLevels.includes(levelId)) {
+          setCompletedLevels(prev => [...prev, levelId]);
+        }
+      }
+      setScreen('levels');
+    }
   };
 
   const filteredTopics = (topics) => {
@@ -665,6 +707,59 @@ export default function WordShooter({ onExit }) {
           <Loader2 className="w-20 h-20 animate-spin mx-auto mb-6 text-purple-500" />
           <h2 className="text-3xl font-bold mb-2 text-white">Generating Learning Data...</h2>
           <p className="text-lg text-gray-400">AI is creating your vocabulary mission</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (screen === 'quiz') {
+    const q = quizQuestions[currentQuestion];
+    if (!q) {
+      setScreen('levels');
+      return null;
+    }
+
+    return (
+      <div className="fixed inset-0 bg-[#0f0f23] z-[9999] flex items-center justify-center p-4">
+        <div className="w-full max-w-2xl">
+          <div className="bg-[#1a1a2e] border-2 border-purple-500 rounded-xl p-8">
+            <div className="flex justify-between items-center mb-6">
+              <span className="text-purple-400 font-mono text-lg">Level {currentLevel} Quiz</span>
+              <div className="flex items-center gap-2">
+                <img src={LOGO_URL} alt="1cPublishing" className="w-8 h-8 rounded" />
+              </div>
+            </div>
+            
+            <h3 className="text-2xl text-white mb-6 leading-relaxed text-center">{q.question}</h3>
+            
+            {q.tip && (
+              <div className="bg-amber-900/30 border border-amber-500/40 rounded-lg p-4 mb-6">
+                <div className="flex items-start gap-3">
+                  <Lightbulb className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <p className="text-amber-400 font-semibold text-sm mb-1">TIP</p>
+                    <p className="text-amber-200/80 text-sm">{q.tip}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            <div className="flex gap-4 justify-center">
+              <Button onClick={() => handleQuizAnswer(false)} 
+                className="w-40 h-14 text-lg font-mono border-2 border-red-500/50 bg-transparent hover:bg-red-500/20 text-red-400 rounded-full">
+                No
+              </Button>
+              <Button onClick={() => handleQuizAnswer(true)} 
+                className="w-40 h-14 text-lg font-mono border-2 border-green-500/50 bg-transparent hover:bg-green-500/20 text-green-400 rounded-full">
+                Yes
+              </Button>
+            </div>
+            
+            <div className="mt-6 text-center">
+              <p className="text-gray-400 font-mono">Question {currentQuestion + 1} / 5</p>
+              <p className="text-purple-400 text-sm mt-2">Correct: {quizScore} • Need 3/5 to pass</p>
+            </div>
+          </div>
         </div>
       </div>
     );
