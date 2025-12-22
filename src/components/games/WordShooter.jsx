@@ -208,7 +208,7 @@ export default function WordShooter({ onExit }) {
 
     const state = {
       playerX: canvas.width / 2, playerY: canvas.height - 100, playerWidth: 60, playerHealth: 5,
-      bullets: [], asteroids: [], aliens: [], particles: [], floatingTexts: [], stars: [],
+      bullets: [], asteroids: [], aliens: [], alienBullets: [], particles: [], floatingTexts: [], stars: [],
       score: 0, combo: 0, maxCombo: 0, wordsCompleted: 0, totalWords: wordData.length, bombs: 3,
       paused: false, gameOver: false, shockwave: null, flash: 0, shake: 0,
       spawnTimer: 0, spawnRate: 120, wordQueue: [...wordData].sort(() => Math.random() - 0.5),
@@ -332,7 +332,8 @@ export default function WordShooter({ onExit }) {
         width: 80, 
         height: 80,
         health: 1,
-        alienImage: alienImage
+        alienImage: alienImage,
+        shootTimer: Math.random() * 120
       });
       state.aliensSpawned++;
     }
@@ -488,6 +489,16 @@ export default function WordShooter({ onExit }) {
       }
       
       state.asteroids = state.asteroids.filter(ast => {
+        // Follow player ship
+        const dx = state.playerX - ast.x;
+        const dy = state.playerY - ast.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist > 0) {
+          ast.vx += (dx / dist) * 0.15;
+          ast.vy += (dy / dist) * 0.15;
+        }
+        ast.vx *= 0.98;
+        ast.vy *= 0.98;
         ast.x += ast.vx; ast.y += ast.vy;
         drawAsteroid(ast);
         for(let i = state.bullets.length - 1; i >= 0; i--) {
@@ -502,6 +513,14 @@ export default function WordShooter({ onExit }) {
 
       state.aliens = state.aliens.filter(alien => {
         alien.x += alien.vx; alien.y += alien.vy;
+        
+        // Random shooting
+        alien.shootTimer++;
+        if (alien.shootTimer > 120 && Math.random() < 0.02 && alien.y > 0) {
+          state.alienBullets.push({ x: alien.x, y: alien.y, vx: 0, vy: 5 });
+          alien.shootTimer = 0;
+        }
+        
         drawAlien(alien);
         for(let i = state.bullets.length - 1; i >= 0; i--) {
           const b = state.bullets[i];
@@ -519,6 +538,28 @@ export default function WordShooter({ onExit }) {
         }
         if (alien.y > h + 100) { state.playerHealth--; if (state.playerHealth <= 0) state.gameOver = true; return false; }
         return true;
+      });
+
+      // Draw and update alien bullets
+      state.alienBullets = state.alienBullets.filter(b => {
+        b.x += b.vx; b.y += b.vy;
+        ctx.fillStyle = '#ff4444';
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = '#ff4444';
+        ctx.beginPath();
+        ctx.arc(b.x, b.y, 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        
+        // Check collision with player
+        if (b.x > state.playerX - state.playerWidth/2 && b.x < state.playerX + state.playerWidth/2 && 
+            b.y > state.playerY - 20 && b.y < state.playerY + 20) {
+          state.playerHealth--;
+          state.shake = 10;
+          if (state.playerHealth <= 0) state.gameOver = true;
+          return false;
+        }
+        return b.y < h + 10;
       });
       
       state.particles = state.particles.filter(p => { p.life--; p.x += p.vx; p.y += p.vy; p.vy += 0.2; ctx.fillStyle = p.color; ctx.globalAlpha = p.life / p.maxLife; ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1; return p.life > 0; });
