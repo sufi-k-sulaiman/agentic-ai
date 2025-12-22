@@ -190,21 +190,16 @@ export default function WordShooter({ onExit }) {
     const q = quizQuestions[currentQuestion];
     const correct = q?.answer === answer;
     
-    if (correct) {
-      setQuizScore(prev => prev + 1);
-    }
+    const newQuizScore = correct ? quizScore + 1 : quizScore;
+    setQuizScore(newQuizScore);
     
     if (currentQuestion < quizQuestions.length - 1) {
       setCurrentQuestion(prev => prev + 1);
     } else {
       // Quiz complete - check if passed (need at least 3/5)
-      const finalScore = quizScore + (correct ? 1 : 0);
-      if (finalScore >= 3) {
+      if (newQuizScore >= 3) {
         setTotalScore(prev => prev + gameScore);
-        const levelId = subLevels[currentLevel - 1]?.id;
-        if (levelId && !completedLevels.includes(levelId)) {
-          setCompletedLevels(prev => [...prev, levelId]);
-        }
+        setCompletedLevels(prev => [...prev, currentLevel]);
       }
       setScreen('levels');
     }
@@ -816,7 +811,7 @@ export default function WordShooter({ onExit }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {subLevels.map((level, i) => {
               const isCompleted = completedLevels.includes(level.id);
-              const isLocked = i > 0 && !completedLevels.includes(subLevels[i-1]?.id) && !isCompleted;
+              const isLocked = i > 0 && !completedLevels.includes(i) && !isCompleted;
               const difficultyColors = {
                 'Beginner': 'from-green-500 to-green-600',
                 'Intermediate': 'from-yellow-500 to-orange-500',
