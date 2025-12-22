@@ -453,7 +453,10 @@ export default function WordShooter({ onExit }) {
       });
       
       state.spawnTimer++;
-      if (state.spawnTimer >= state.spawnRate && state.wordQueue.length > 0) { spawnAsteroid(); state.spawnTimer = 0; }
+      if (state.spawnTimer >= state.spawnRate && state.wordQueue.length > 0 && state.aliensSpawned < state.maxAliensPerLevel) { 
+        spawnAsteroid(); 
+        state.spawnTimer = 0; 
+      }
       
       state.asteroids = state.asteroids.filter(ast => {
         ast.x += ast.vx; ast.y += ast.vy;
