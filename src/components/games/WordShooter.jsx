@@ -191,12 +191,28 @@ export default function WordShooter({ onExit }) {
     resize();
     window.addEventListener('resize', resize);
 
+    const ALIEN_IMAGES = [
+      'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/692729a5f5180fbd43f297e9/f034c9ad2_alien1.png',
+      'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/692729a5f5180fbd43f297e9/3f4e9a772_alien2.png',
+      'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/692729a5f5180fbd43f297e9/38a9cc7c6_alien3.png',
+      'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/692729a5f5180fbd43f297e9/e3a94aa9c_alien4.png',
+      'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/692729a5f5180fbd43f297e9/c25a6c840_alien5.png'
+    ];
+    
+    // Preload alien images
+    const alienImgs = ALIEN_IMAGES.map(src => {
+      const img = new Image();
+      img.src = src;
+      return img;
+    });
+
     const state = {
       playerX: canvas.width / 2, playerY: canvas.height - 100, playerWidth: 60, playerHealth: 5,
       bullets: [], asteroids: [], particles: [], floatingTexts: [], stars: [],
       score: 0, combo: 0, maxCombo: 0, wordsCompleted: 0, totalWords: wordData.length, bombs: 3,
       paused: false, gameOver: false, shockwave: null, flash: 0, shake: 0,
       spawnTimer: 0, spawnRate: 120, wordQueue: [...wordData].sort(() => Math.random() - 0.5),
+      aliensSpawned: 0, maxAliensPerLevel: 10,
     };
 
     for(let i=0; i<300; i++) {
