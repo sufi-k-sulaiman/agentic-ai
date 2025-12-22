@@ -126,28 +126,7 @@ export default function WordShooter({ onExit }) {
     }
   };
 
-  const generateWordData = async (levelName) => {
-    setLoading(true);
-    setScreen('loading');
-    try {
-      const result = await base44.integrations.Core.InvokeLLM({
-        prompt: `Generate vocabulary data for: "${currentTopic} - ${levelName}". Return 20 terms with related words and definitions. Format: { "words": [{ "primary": "term", "frequency": 50-100, "related": ["term1", "term2"], "definition": "short definition" }] }`,
-        response_json_schema: {
-          type: "object",
-          properties: {
-            words: { type: "array", items: { type: "object", properties: { primary: { type: "string" }, frequency: { type: "number" }, related: { type: "array", items: { type: "string" } }, definition: { type: "string" } } } }
-          }
-        }
-      });
-      setWordData(result.words || []);
-      setScreen('game');
-    } catch (error) {
-      console.error('Failed to generate words:', error);
-      setScreen('levels');
-    } finally {
-      setLoading(false);
-    }
-  };
+
 
   const handleStartGame = (topic) => {
     if (topic === 'custom') {
@@ -159,9 +138,12 @@ export default function WordShooter({ onExit }) {
   };
 
   const handlePlayLevel = async (level) => {
+    setLoading(true);
+    setScreen('loading');
     setCurrentLevel(level.id);
-    // Generate quiz questions for this level
+    
     try {
+      // Generate quiz questions for this level
       const quizResult = await base44.integrations.Core.InvokeLLM({
         prompt: `Generate 5 educational Yes/No questions about "${currentTopic} - ${level.name}". Test real knowledge. Include a helpful tip for each. Return: { "questions": [{ "question": "Is X true?", "answer": true/false, "explanation": "Brief explanation", "tip": "A helpful hint" }] }`,
         response_json_schema: {
@@ -172,11 +154,25 @@ export default function WordShooter({ onExit }) {
         }
       });
       setQuizQuestions(quizResult.questions || []);
+      
+      // Generate word data
+      const result = await base44.integrations.Core.InvokeLLM({
+        prompt: `Generate vocabulary data for: "${currentTopic} - ${level.name}". Return 20 terms with related words and definitions. Format: { "words": [{ "primary": "term", "frequency": 50-100, "related": ["term1", "term2"], "definition": "short definition" }] }`,
+        response_json_schema: {
+          type: "object",
+          properties: {
+            words: { type: "array", items: { type: "object", properties: { primary: { type: "string" }, frequency: { type: "number" }, related: { type: "array", items: { type: "string" } }, definition: { type: "string" } } } }
+          }
+        }
+      });
+      setWordData(result.words || []);
+      setScreen('game');
     } catch (error) {
-      console.error('Failed to generate quiz:', error);
-      setQuizQuestions([]);
+      console.error('Failed to generate level data:', error);
+      setScreen('levels');
+    } finally {
+      setLoading(false);
     }
-    generateWordData(level.name);
   };
 
   const handleLevelComplete = (score) => {
@@ -830,11 +826,11 @@ export default function WordShooter({ onExit }) {
                   <h3 className="text-xl font-bold text-white mb-2">Level {level.id}: {level.name}</h3>
                   <p className="text-gray-400 text-sm mb-4">{level.description}</p>
                   <Button 
-                    onClick={() => !isLocked && handlePlayLevel(level)} 
-                    disabled={isLocked}
-                    className={`w-full ${isLocked ? 'bg-gray-700' : isCompleted ? 'bg-green-600 hover:bg-green-700' : 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700'}`}
+                    onClick={() => handlePlayLevel(level)} 
+                    disabled={isLocked || loading}
+                    className={`w-full ${isLocked ? 'bg-gray-700 cursor-not-allowed' : isCompleted ? 'bg-green-600 hover:bg-green-700' : 'bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700'}`}
                   >
-                    {isLocked ? 'Locked' : isCompleted ? 'Play Again' : 'Start Level'}
+                    {loading ? 'Loading...' : isLocked ? 'Locked' : isCompleted ? 'Play Again' : 'Start Level'}
                   </Button>
                 </Card>
               );
