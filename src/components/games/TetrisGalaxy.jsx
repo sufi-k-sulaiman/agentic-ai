@@ -875,7 +875,7 @@ export default function TetrisGalaxy({ onExit }) {
             <div className="max-w-5xl mx-auto">
                 <div className="text-center mb-8">
                     <div className="relative inline-block mb-4">
-                        <img src={LOGO_URL} alt="Logo" className="w-12 h-12 mx-auto rounded-lg shadow-md" />
+                        <img src={LOGO_URL} alt="Logo" className="w-12 h-12 mx-auto rounded-lg" />
                     </div>
                     <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent mb-2">TETRIS GALAXY</h1>
                     <p className="text-purple-500 text-sm">Stack Words • Learn Vocabulary • Explore the Cosmos</p>
