@@ -1245,7 +1245,7 @@ export default function SpaceBattleGame({ onExit }) {
                                 Yes
                             </Button>
                         </div>
-                        <p className="text-center text-gray-500 mt-6 font-mono">Question {currentQuestion + 1} {levelComplete ? `/ ${questionsNeeded}` : `/ ${questions.length}`}</p>
+                        <p className="text-center text-gray-500 mt-6 font-mono">Question {(currentQuestion % 5) + 1} / 5</p>
                     </div>
                 </div>
             </div>
