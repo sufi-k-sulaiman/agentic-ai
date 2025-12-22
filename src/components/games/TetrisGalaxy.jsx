@@ -601,7 +601,7 @@ export default function TetrisGalaxy({ onExit }) {
 
             // Right side panel - responsive positioning
             const isMobileView = canvas.width < 768;
-            const panelX = isMobileView ? 10 : offsetX + gameWidth + 20;
+            const panelX = isMobileView ? 10 : offsetX + gameWidth - 30;
             const panelY = isMobileView ? offsetY + gameHeight + 10 : offsetY;
             const panelWidth = isMobileView ? canvas.width - 20 : 130;
 
