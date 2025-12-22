@@ -706,13 +706,46 @@ export default function TankCity({ onExit }) {
                 if (distToBase < TILE * 1.8 && state.shieldHealth > 0 && !bullet.friendly) {
                     state.shieldHealth--;
                     spawnParticles(bullet.x, bullet.y, '#00ddff', 20);
+                    
+                    // When shield depleted, create massive explosion
+                    if (state.shieldHealth === 0) {
+                        // Giant explosion at base
+                        for (let e = 0; e < 150; e++) {
+                            const angle = (Math.PI * 2 * e) / 150;
+                            const speed = 5 + Math.random() * 15;
+                            state.particles.push({
+                                x: baseX + TILE,
+                                y: baseY + TILE * 0.75,
+                                vx: Math.cos(angle) * speed,
+                                vy: Math.sin(angle) * speed - 4,
+                                life: 60 + Math.random() * 40,
+                                maxLife: 100,
+                                color: ['#ffd700', '#ffaa00', '#ff6600', '#ff0000', '#ffffff'][Math.floor(Math.random() * 5)],
+                                size: 5 + Math.random() * 12,
+                            });
+                        }
+                    }
                     return false;
                 }
                 
                 if (bullet.x > baseX && bullet.x < baseX + TILE * 2 &&
                     bullet.y > baseY && bullet.y < baseY + TILE * 1.5) {
                     state.baseDestroyed = true;
-                    spawnParticles(baseX + TILE, baseY + TILE * 0.75, '#ffd700', 50);
+                    // Massive game-ending explosion
+                    for (let e = 0; e < 200; e++) {
+                        const angle = (Math.PI * 2 * e) / 200;
+                        const speed = 6 + Math.random() * 20;
+                        state.particles.push({
+                            x: baseX + TILE,
+                            y: baseY + TILE * 0.75,
+                            vx: Math.cos(angle) * speed,
+                            vy: Math.sin(angle) * speed - 5,
+                            life: 70 + Math.random() * 50,
+                            maxLife: 120,
+                            color: ['#ffd700', '#ffaa00', '#ff6600', '#ff0000', '#ffffff', '#ffcc00'][Math.floor(Math.random() * 6)],
+                            size: 6 + Math.random() * 15,
+                        });
+                    }
                     state.gameOver = true;
                     return false;
                 }
@@ -723,7 +756,21 @@ export default function TankCity({ onExit }) {
                         const enemy = state.enemies[i];
                         if (Math.abs(enemy.x + TILE/2 - bullet.x) < TILE/2 + 4 && 
                             Math.abs(enemy.y + TILE/2 - bullet.y) < TILE/2 + 4) {
-                            spawnParticles(enemy.x + TILE/2, enemy.y + TILE/2, '#ff4444', 20);
+                            // Enemy tank explosion
+                            for (let e = 0; e < 50; e++) {
+                                const angle = (Math.PI * 2 * e) / 50;
+                                const speed = 3 + Math.random() * 8;
+                                state.particles.push({
+                                    x: enemy.x + TILE/2,
+                                    y: enemy.y + TILE/2,
+                                    vx: Math.cos(angle) * speed,
+                                    vy: Math.sin(angle) * speed - 2,
+                                    life: 40 + Math.random() * 20,
+                                    maxLife: 60,
+                                    color: ['#ff4400', '#ff6600', '#ff8800', '#ffaa00', '#ff0000'][Math.floor(Math.random() * 5)],
+                                    size: 3 + Math.random() * 6,
+                                });
+                            }
                             state.enemies.splice(i, 1);
                             state.score += 200;
                             state.enemiesLeft--;
@@ -736,7 +783,21 @@ export default function TankCity({ onExit }) {
                 } else {
                     if (Math.abs(state.player.x + TILE/2 - bullet.x) < TILE/2 + 4 && 
                         Math.abs(state.player.y + TILE/2 - bullet.y) < TILE/2 + 4) {
-                        spawnParticles(state.player.x + TILE/2, state.player.y + TILE/2, '#00ff00', 20);
+                        // Hero tank explosion - blue/green particles
+                        for (let e = 0; e < 60; e++) {
+                            const angle = (Math.PI * 2 * e) / 60;
+                            const speed = 4 + Math.random() * 10;
+                            state.particles.push({
+                                x: state.player.x + TILE/2,
+                                y: state.player.y + TILE/2,
+                                vx: Math.cos(angle) * speed,
+                                vy: Math.sin(angle) * speed - 3,
+                                life: 50 + Math.random() * 30,
+                                maxLife: 80,
+                                color: ['#00ff00', '#00ffaa', '#00ddff', '#00aaff', '#ffffff'][Math.floor(Math.random() * 5)],
+                                size: 4 + Math.random() * 8,
+                            });
+                        }
                         state.lives--;
                         setLives(state.lives);
                         if (state.lives <= 0) {
