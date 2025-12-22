@@ -728,7 +728,7 @@ export default function TetrisGalaxy({ onExit }) {
                 // Paragraph with the words - wrap text
                 ctx.fillStyle = '#e9d5ff';
                 ctx.font = '18px Arial';
-                const maxWidth = canvas.width * 0.6;
+                const maxWidth = canvas.width * 0.45;
                 const words = lineClearMessage.split(' ');
                 let line = '';
                 let lineY = msgCenterY + 5;
