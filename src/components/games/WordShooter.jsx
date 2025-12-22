@@ -369,7 +369,15 @@ export default function WordShooter({ onExit }) {
     function drawAsteroid(ast) {
       ctx.save();
       ctx.translate(ast.x, ast.y);
-      const w = ast.width, h = ast.height, r = h / 2; // Full rounded ends (pill shape)
+      
+      // Draw alien image if loaded
+      if (ast.alienImage && ast.alienImage.complete) {
+        const alienSize = 80;
+        ctx.drawImage(ast.alienImage, -alienSize/2, -alienSize/2 - 20, alienSize, alienSize);
+      }
+      
+      // Draw word bubble below alien
+      const w = ast.width, h = ast.height, r = h / 2;
       ctx.fillStyle = ast.color;
       ctx.shadowBlur = 15;
       ctx.shadowColor = ast.color;
