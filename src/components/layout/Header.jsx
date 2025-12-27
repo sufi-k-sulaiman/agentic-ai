@@ -67,7 +67,7 @@ export default function Header({ title, sidebarOpen, setSidebarOpen, children, c
 
     return (
         <header className="bg-white sticky top-0 z-40 border-b border-gray-200 shadow-sm">
-            <div className="bg-purple-600 text-white text-center py-2 px-4 text-sm font-medium">
+            <div className="text-white text-center py-2 px-4 text-sm font-medium" style={{ backgroundColor: '#6209e6' }}>
                 About system - We're upgrading our systems, Our service will be back up shortly.
             </div>
             <div className="flex items-center justify-between px-4 h-[72px] gap-4">
