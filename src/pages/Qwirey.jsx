@@ -354,20 +354,18 @@ export default function Qwirey() {
                 } else if (responseFormat === 'long') {
                     apiCalls.push(
                         base44.integrations.Core.InvokeLLM({
-                            prompt: `CRITICAL REQUIREMENT: Generate EXACTLY 1400-1500 words total about "${currentPrompt}".
+                            prompt: `Write a comprehensive, detailed article about "${currentPrompt}".
 
-Write 10-12 substantial paragraphs. Each paragraph MUST be 120-150 words.
+Write 8-12 paragraphs total. Each paragraph should be substantial (100-150 words).
 
-IMPORTANT: Count words carefully. Your response MUST reach 1400 words minimum.
+Cover the topic thoroughly with:
+- Clear explanations and examples
+- Different perspectives and viewpoints  
+- Historical context where relevant
+- Practical implications
+- Detailed analysis
 
-For each paragraph:
-- Explore different aspects in depth
-- Include multiple examples and explanations
-- Add context, analysis, and insights
-- Discuss implications and perspectives
-- Use rich, detailed language
-
-Be comprehensive and thorough. If in doubt, write MORE rather than less.`,
+Write in a clear, engaging style. Be informative and thorough.`,
                             add_context_from_internet: true,
                             response_json_schema: {
                                 type: "object",
@@ -874,20 +872,21 @@ I need 10 reviews with: title, intro, and reviews array (name, rating 1-10, text
                 setResult(prev => ({ ...prev, shortData: shortResponse }));
             } else if (newFormat === 'long' && !result.longData) {
                 const longResponse = await base44.integrations.Core.InvokeLLM({
-                    prompt: `CRITICAL REQUIREMENT: Generate EXACTLY 1400-1500 words total about "${currentPrompt}".
+                    prompt: `CRITICAL: Generate EXACTLY 1400-1500 words total for "${currentPrompt}".
 
-Write 10-12 substantial paragraphs. Each paragraph MUST be 120-150 words.
+            Write EXACTLY 12 paragraphs. Each paragraph MUST be 120-130 words (count carefully!).
 
-IMPORTANT: Count words carefully. Your response MUST reach 1400 words minimum.
+            For EACH paragraph:
+            - Explore ONE distinct aspect in great depth
+            - Include multiple examples and explanations
+            - Add theoretical frameworks or historical context
+            - Provide comparative analysis where relevant
+            - Discuss implications and consequences
+            - Present different perspectives
 
-For each paragraph:
-- Explore different aspects in depth
-- Include multiple examples and explanations
-- Add context, analysis, and insights
-- Discuss implications and perspectives
-- Use rich, detailed language
+            Make each paragraph substantial and information-rich. Expand ideas thoroughly. Use formal academic tone. Focus on concepts and principles, not products or brands.
 
-Be comprehensive and thorough. If in doubt, write MORE rather than less.`,
+            WORD COUNT IS CRITICAL: 1400-1500 words total. If unsure, write MORE detail rather than less.`,
                     add_context_from_internet: true,
                     response_json_schema: {
                         type: "object",
