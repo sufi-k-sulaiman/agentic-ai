@@ -354,18 +354,21 @@ export default function Qwirey() {
                 } else if (responseFormat === 'long') {
                     apiCalls.push(
                         base44.integrations.Core.InvokeLLM({
-                            prompt: `Write a comprehensive, detailed article about "${currentPrompt}".
+                            prompt: `CRITICAL: Generate EXACTLY 1400-1500 words total for "${currentPrompt}".
 
-Write 8-12 paragraphs total. Each paragraph should be substantial (100-150 words).
+                Write EXACTLY 12 paragraphs. Each paragraph MUST be 120-130 words (count carefully!).
 
-Cover the topic thoroughly with:
-- Clear explanations and examples
-- Different perspectives and viewpoints  
-- Historical context where relevant
-- Practical implications
-- Detailed analysis
+                For EACH paragraph:
+                - Explore ONE distinct aspect in great depth
+                - Include multiple examples and explanations
+                - Add theoretical frameworks or historical context
+                - Provide comparative analysis where relevant
+                - Discuss implications and consequences
+                - Present different perspectives
 
-Write in a clear, engaging style. Be informative and thorough.`,
+                Make each paragraph substantial and information-rich. Expand ideas thoroughly. Use formal academic tone. Focus on concepts and principles, not products or brands.
+
+                WORD COUNT IS CRITICAL: 1400-1500 words total. If unsure, write MORE detail rather than less.`,
                             add_context_from_internet: true,
                             response_json_schema: {
                                 type: "object",
@@ -527,10 +530,9 @@ If exact reviews aren't available, find user opinions, comments, or discussions 
                 };
 
                 if (responseFormat === 'short') {
-                    resultData.shortData = responses[1] || { blurb: '', bullets: [] };
+                    resultData.shortData = responses[1];
                 } else if (responseFormat === 'long') {
-                    resultData.longData = responses[1] || { paragraphs: [] };
-                    console.log('Long format data:', resultData.longData);
+                    resultData.longData = responses[1];
                 } else if (responseFormat === 'dynamic') {
                     const dynamicTextResponse = responses[1];
                     const imagesResponse = responses[2];
