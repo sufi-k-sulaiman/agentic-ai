@@ -354,18 +354,20 @@ export default function Qwirey() {
                 } else if (responseFormat === 'long') {
                     apiCalls.push(
                         base44.integrations.Core.InvokeLLM({
-                            prompt: `Write a comprehensive, detailed article about "${currentPrompt}".
+                            prompt: `CRITICAL REQUIREMENT: Generate EXACTLY 1400-1500 words total about "${currentPrompt}".
 
-Write 8-12 paragraphs total. Each paragraph should be substantial (100-150 words).
+Write 10-12 substantial paragraphs. Each paragraph MUST be 120-150 words.
 
-Cover the topic thoroughly with:
-- Clear explanations and examples
-- Different perspectives and viewpoints  
-- Historical context where relevant
-- Practical implications
-- Detailed analysis
+IMPORTANT: Count words carefully. Your response MUST reach 1400 words minimum.
 
-Write in a clear, engaging style. Be informative and thorough.`,
+For each paragraph:
+- Explore different aspects in depth
+- Include multiple examples and explanations
+- Add context, analysis, and insights
+- Discuss implications and perspectives
+- Use rich, detailed language
+
+Be comprehensive and thorough. If in doubt, write MORE rather than less.`,
                             add_context_from_internet: true,
                             response_json_schema: {
                                 type: "object",
