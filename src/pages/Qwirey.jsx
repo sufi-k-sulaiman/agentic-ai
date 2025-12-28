@@ -874,21 +874,20 @@ I need 10 reviews with: title, intro, and reviews array (name, rating 1-10, text
                 setResult(prev => ({ ...prev, shortData: shortResponse }));
             } else if (newFormat === 'long' && !result.longData) {
                 const longResponse = await base44.integrations.Core.InvokeLLM({
-                    prompt: `CRITICAL: Generate EXACTLY 1400-1500 words total for "${currentPrompt}".
+                    prompt: `CRITICAL REQUIREMENT: Generate EXACTLY 1400-1500 words total about "${currentPrompt}".
 
-            Write EXACTLY 12 paragraphs. Each paragraph MUST be 120-130 words (count carefully!).
+Write 10-12 substantial paragraphs. Each paragraph MUST be 120-150 words.
 
-            For EACH paragraph:
-            - Explore ONE distinct aspect in great depth
-            - Include multiple examples and explanations
-            - Add theoretical frameworks or historical context
-            - Provide comparative analysis where relevant
-            - Discuss implications and consequences
-            - Present different perspectives
+IMPORTANT: Count words carefully. Your response MUST reach 1400 words minimum.
 
-            Make each paragraph substantial and information-rich. Expand ideas thoroughly. Use formal academic tone. Focus on concepts and principles, not products or brands.
+For each paragraph:
+- Explore different aspects in depth
+- Include multiple examples and explanations
+- Add context, analysis, and insights
+- Discuss implications and perspectives
+- Use rich, detailed language
 
-            WORD COUNT IS CRITICAL: 1400-1500 words total. If unsure, write MORE detail rather than less.`,
+Be comprehensive and thorough. If in doubt, write MORE rather than less.`,
                     add_context_from_internet: true,
                     response_json_schema: {
                         type: "object",
