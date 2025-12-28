@@ -527,9 +527,10 @@ If exact reviews aren't available, find user opinions, comments, or discussions 
                 };
 
                 if (responseFormat === 'short') {
-                    resultData.shortData = responses[1];
+                    resultData.shortData = responses[1] || { blurb: '', bullets: [] };
                 } else if (responseFormat === 'long') {
-                    resultData.longData = responses[1];
+                    resultData.longData = responses[1] || { paragraphs: [] };
+                    console.log('Long format data:', resultData.longData);
                 } else if (responseFormat === 'dynamic') {
                     const dynamicTextResponse = responses[1];
                     const imagesResponse = responses[2];
