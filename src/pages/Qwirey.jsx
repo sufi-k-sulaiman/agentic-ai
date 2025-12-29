@@ -354,21 +354,31 @@ export default function Qwirey() {
                 } else if (responseFormat === 'long') {
                     apiCalls.push(
                         base44.integrations.Core.InvokeLLM({
-                            prompt: `CRITICAL: Generate EXACTLY 1400-1500 words total for "${currentPrompt}".
+                            prompt: `MANDATORY WORD COUNT: You MUST generate between 1400-1600 words for "${currentPrompt}". This is NON-NEGOTIABLE. Count every single word.
 
-                Write EXACTLY 12 paragraphs. Each paragraph MUST be 120-130 words (count carefully!).
+Write EXACTLY 12-14 paragraphs. Calculate: 1400-1600 words ÷ 12-14 paragraphs = approximately 110-130 words per paragraph.
 
-                For EACH paragraph:
-                - Explore ONE distinct aspect in great depth
-                - Include multiple examples and explanations
-                - Add theoretical frameworks or historical context
-                - Provide comparative analysis where relevant
-                - Discuss implications and consequences
-                - Present different perspectives
+EACH paragraph REQUIREMENTS:
+1. Start with a clear topic sentence
+2. Provide 2-3 detailed examples with specific details
+3. Add historical context, frameworks, or theories
+4. Include comparative analysis or different viewpoints
+5. Discuss practical implications and real-world applications
+6. End with a transitional or concluding insight
 
-                Make each paragraph substantial and information-rich. Expand ideas thoroughly. Use formal academic tone. Focus on concepts and principles, not products or brands.
+EXPANSION TECHNIQUES - Use ALL of these:
+- Define key terms thoroughly with origins and evolution
+- Provide multiple concrete examples from different contexts
+- Compare and contrast different approaches or perspectives
+- Explain cause-and-effect relationships in depth
+- Discuss historical development and future trajectories
+- Add supporting evidence, statistics, or case studies
+- Explore underlying mechanisms and principles
+- Address common misconceptions or debates
 
-                WORD COUNT IS CRITICAL: 1400-1500 words total. If unsure, write MORE detail rather than less.`,
+CRITICAL VERIFICATION: Before finishing, COUNT YOUR WORDS. Must be 1400-1600. If below 1400, EXPAND each paragraph with more examples, explanations, and analysis. Better to exceed 1600 than fall short of 1400.
+
+Use formal academic tone. Focus on concepts and principles. NO brand names or promotional content.`,
                             add_context_from_internet: true,
                             response_json_schema: {
                                 type: "object",
@@ -874,21 +884,31 @@ I need 10 reviews with: title, intro, and reviews array (name, rating 1-10, text
                 setResult(prev => ({ ...prev, shortData: shortResponse }));
             } else if (newFormat === 'long' && !result.longData) {
                 const longResponse = await base44.integrations.Core.InvokeLLM({
-                    prompt: `CRITICAL: Generate EXACTLY 1400-1500 words total for "${currentPrompt}".
+                    prompt: `MANDATORY WORD COUNT: You MUST generate between 1400-1600 words for "${currentPrompt}". This is NON-NEGOTIABLE. Count every single word.
 
-            Write EXACTLY 12 paragraphs. Each paragraph MUST be 120-130 words (count carefully!).
+Write EXACTLY 12-14 paragraphs. Calculate: 1400-1600 words ÷ 12-14 paragraphs = approximately 110-130 words per paragraph.
 
-            For EACH paragraph:
-            - Explore ONE distinct aspect in great depth
-            - Include multiple examples and explanations
-            - Add theoretical frameworks or historical context
-            - Provide comparative analysis where relevant
-            - Discuss implications and consequences
-            - Present different perspectives
+EACH paragraph REQUIREMENTS:
+1. Start with a clear topic sentence
+2. Provide 2-3 detailed examples with specific details
+3. Add historical context, frameworks, or theories
+4. Include comparative analysis or different viewpoints
+5. Discuss practical implications and real-world applications
+6. End with a transitional or concluding insight
 
-            Make each paragraph substantial and information-rich. Expand ideas thoroughly. Use formal academic tone. Focus on concepts and principles, not products or brands.
+EXPANSION TECHNIQUES - Use ALL of these:
+- Define key terms thoroughly with origins and evolution
+- Provide multiple concrete examples from different contexts
+- Compare and contrast different approaches or perspectives
+- Explain cause-and-effect relationships in depth
+- Discuss historical development and future trajectories
+- Add supporting evidence, statistics, or case studies
+- Explore underlying mechanisms and principles
+- Address common misconceptions or debates
 
-            WORD COUNT IS CRITICAL: 1400-1500 words total. If unsure, write MORE detail rather than less.`,
+CRITICAL VERIFICATION: Before finishing, COUNT YOUR WORDS. Must be 1400-1600. If below 1400, EXPAND each paragraph with more examples, explanations, and analysis. Better to exceed 1600 than fall short of 1400.
+
+Use formal academic tone. Focus on concepts and principles. NO brand names or promotional content.`,
                     add_context_from_internet: true,
                     response_json_schema: {
                         type: "object",
