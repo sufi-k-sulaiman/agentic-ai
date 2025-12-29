@@ -66,11 +66,8 @@ export default function Header({ title, sidebarOpen, setSidebarOpen, children, c
     };
 
     return (
-        <header className="bg-white sticky top-0 z-40 border-b border-gray-200 shadow-sm">
-            <div className="bg-purple-600 text-white text-center py-2 px-4 text-sm font-medium">
-               We are upgrading our systems, Our service will be back up shortly.
-            </div>
-            <div className="flex items-center justify-between px-4 h-[72px] gap-4">
+        <header className="bg-white sticky top-0 z-40 border-b border-gray-200 shadow-sm h-[72px]">
+            <div className="flex items-center justify-between px-4 h-full gap-4">
                 <div className="flex items-center gap-4 flex-shrink-0">
                     {/* Logo - hidden on mobile since it's in the sidebar */}
                     <Link to={createPageUrl('Home')} className="hidden md:flex items-center gap-3 hover:opacity-80">
