@@ -354,28 +354,16 @@ export default function Qwirey() {
                 } else if (responseFormat === 'long') {
                     apiCalls.push(
                         base44.integrations.Core.InvokeLLM({
-                            prompt: `Write a comprehensive article about "${currentPrompt}" with 1400-1600 total words.
-
-Structure: 12-14 paragraphs, each 110-130 words.
-
-For each paragraph, include:
-- Clear topic sentence introducing the concept
-- Multiple specific examples with details
-- Historical context or theoretical frameworks
-- Different perspectives and comparative analysis
-- Practical implications and applications
-- Supporting evidence and explanations
-
-Cover different aspects thoroughly: definitions, mechanisms, evolution, applications, challenges, future outlook, and broader implications.
-
-Use formal academic tone. Be detailed and information-rich. NO brand names.
-
-VERIFY: Count your total words - must be 1400-1600. Add more detail if needed.`,
+                            prompt: `Write a detailed essay about "${currentPrompt}". Generate 12-14 paragraphs. Each paragraph should be 110-130 words. Total word count: 1400-1600 words. Be comprehensive and thorough with examples, context, analysis, and explanations in each paragraph.`,
                             add_context_from_internet: true,
                             response_json_schema: {
                                 type: "object",
                                 properties: {
-                                    paragraphs: { type: "array", items: { type: "string" } }
+                                    paragraphs: { 
+                                        type: "array", 
+                                        items: { type: "string" },
+                                        minItems: 12
+                                    }
                                 }
                             }
                         })
@@ -876,28 +864,16 @@ I need 10 reviews with: title, intro, and reviews array (name, rating 1-10, text
                 setResult(prev => ({ ...prev, shortData: shortResponse }));
             } else if (newFormat === 'long' && !result.longData) {
                 const longResponse = await base44.integrations.Core.InvokeLLM({
-                    prompt: `Write a comprehensive article about "${currentPrompt}" with 1400-1600 total words.
-
-Structure: 12-14 paragraphs, each 110-130 words.
-
-For each paragraph, include:
-- Clear topic sentence introducing the concept
-- Multiple specific examples with details
-- Historical context or theoretical frameworks
-- Different perspectives and comparative analysis
-- Practical implications and applications
-- Supporting evidence and explanations
-
-Cover different aspects thoroughly: definitions, mechanisms, evolution, applications, challenges, future outlook, and broader implications.
-
-Use formal academic tone. Be detailed and information-rich. NO brand names.
-
-VERIFY: Count your total words - must be 1400-1600. Add more detail if needed.`,
+                    prompt: `Write a detailed essay about "${currentPrompt}". Generate 12-14 paragraphs. Each paragraph should be 110-130 words. Total word count: 1400-1600 words. Be comprehensive and thorough with examples, context, analysis, and explanations in each paragraph.`,
                     add_context_from_internet: true,
                     response_json_schema: {
                         type: "object",
                         properties: {
-                            paragraphs: { type: "array", items: { type: "string" } }
+                            paragraphs: { 
+                                type: "array", 
+                                items: { type: "string" },
+                                minItems: 12
+                            }
                         }
                     }
                 });
