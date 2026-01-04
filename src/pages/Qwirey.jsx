@@ -936,6 +936,19 @@ I need 10 reviews with: title, intro, and reviews array (name, rating 1-10, text
             <div className="min-h-screen bg-white p-4 md:p-8">
                 <div className="max-w-4xl mx-auto">
                 
+                {/* Mobile Get Started Button */}
+                <div className="md:hidden text-center mb-6">
+                    <button
+                        onClick={() => {
+                            const textarea = document.querySelector('textarea');
+                            if (textarea) textarea.focus();
+                        }}
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
+                    >
+                        <Sparkles className="w-5 h-5" />
+                        Get Started
+                    </button>
+                </div>
 
                 {/* Model Selection */}
                 <div className="hidden flex-wrap justify-center gap-3 mb-8">
