@@ -74,21 +74,7 @@ export default function Header({ title, sidebarOpen, setSidebarOpen, children, c
                         <img src={LOGO_URL} alt="1cPublishing" className="h-10 w-10 object-contain" />
                         <div className="hidden sm:block">
                             <span className="text-xl font-bold text-gray-900">Agentic Ai</span>
-                                            <div className="flex items-center gap-3 flex-shrink-0">
-                    <a 
-                        href="https://1cplatform.com/Onboarding" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="hidden sm:inline-flex items-center gap-2 px-8 py-3.5 text-white font-semibold rounded-full transition-all shadow-lg hover:shadow-xl"
-                        style={{ backgroundColor: '#6209e6' }}
-                        onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5507C8'}
-                        onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6209e6'}
-                    >
-                        Get started
-                        <ArrowRight className="w-5 h-5" />
-                    </a>
-                    {children}
-                </div>
+                            <p className="text-x font-medium" style={{ color: '#6209e6' }}>1cPlatform - Demo</p>
                         </div>
                     </Link>
                     {setSidebarOpen && (
