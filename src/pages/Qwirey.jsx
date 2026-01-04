@@ -938,7 +938,7 @@ I need 10 reviews with: title, intro, and reviews array (name, rating 1-10, text
                 
 
                 {/* Model Selection */}
-                <div className="flex flex-wrap justify-center gap-3 mb-8">
+                <div className="hidden flex-wrap justify-center gap-3 mb-8">
                     {AI_MODELS.map((model) => (
                         <button
                             key={model.id}
