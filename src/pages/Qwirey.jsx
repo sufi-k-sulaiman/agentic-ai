@@ -28,7 +28,21 @@ import {
 import { toast } from 'sonner';
 import { ERROR_CODES, getErrorCode } from '@/components/ErrorDisplay';
 
+// AI Model Icons - Real brand colors and designs
+const QwireyIcon = () => (
+    <img src={LOGO_URL} alt="Qwirey" className="w-7 h-7 rounded" />
+);
 
+// Send arrow icon matching the reference
+const SendArrowIcon = () => (
+    <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5">
+        <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+);
+
+const AI_MODELS = [
+    { id: 'qwirey', name: 'Qwirey', icon: QwireyIcon, color: 'bg-purple-100 text-purple-700 border-purple-400', description: 'Advanced Ai' },
+];
 
 const CHART_COLORS = ['#8b5cf6', '#6366f1', '#3b82f6', '#06b6d4', '#10b981'];
 
