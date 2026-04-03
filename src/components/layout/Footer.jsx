@@ -19,7 +19,7 @@ export default function Footer() {
                     </nav>
                 </div>
                 <div className="mt-4 pt-4 border-t border-gray-200 text-center text-sm text-gray-500">
-                    Copyright © 2025 <a href="https://1cplatform.com/" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: '#6209e6' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5507C8'} onMouseLeave={(e) => e.currentTarget.style.color = '#6209e6'}>1cPlatform</a>. All rights reserved.
+                    Copyright © 2025 <a href="https://1cplatform.com/" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: '#6209e6' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5507C8'} onMouseLeave={(e) => e.currentTarget.style.color = '#6209e6'}>1cPlatform</a>. Developed by <a href="https://sufikhan.com/" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: '#6209e6' }} onMouseEnter={(e) => e.currentTarget.style.color = '#5507C8'} onMouseLeave={(e) => e.currentTarget.style.color = '#6209e6'}>Sufi K Sulaiman</a>. All rights reserved.
                 </div>
             </div>
         </footer>
