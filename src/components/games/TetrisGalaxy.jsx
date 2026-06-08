@@ -7,6 +7,7 @@ import {
     Maximize2, Minimize2
 } from 'lucide-react';
 import { LOGO_URL } from '@/components/NavigationConfig';
+import { sounds } from '@/lib/gameSound';
 
 const TABS = [
     { id: 'trending', label: 'Trending', color: 'from-violet-500 to-purple-600' },
@@ -456,6 +457,7 @@ export default function TetrisGalaxy({ onExit }) {
             }
 
             if (linesCleared > 0) {
+                sounds.lineClear();
                 const points = [0, 100, 300, 500, 800];
                 gameScore += points[Math.min(linesCleared, 4)] * gameLevel;
                 gameLines += linesCleared;
@@ -494,18 +496,18 @@ export default function TetrisGalaxy({ onExit }) {
             currentPiece.x = Math.floor(BOARD_WIDTH / 2) - Math.floor(currentPiece.shape[0].length / 2);
             currentPiece.y = 0;
             nextPiece = getNextPiece();
-            if (collision(currentPiece)) gameOver = true;
+            if (collision(currentPiece)) { gameOver = true; sounds.gameOver(); }
         };
 
         const lock = () => { merge(); clearLines(); createPiece(); };
-        const drop = () => { if (!collision(currentPiece, 0, 1)) currentPiece.y++; else lock(); dropCounter = 0; };
-        const hardDrop = () => { while (!collision(currentPiece, 0, 1)) { currentPiece.y++; gameScore += 2; } setScore(gameScore); lock(); };
-        const move = (dir) => { if (!collision(currentPiece, dir, 0)) currentPiece.x += dir; };
+        const drop = () => { if (!collision(currentPiece, 0, 1)) currentPiece.y++; else { sounds.pieceLand(); lock(); } dropCounter = 0; };
+        const hardDrop = () => { while (!collision(currentPiece, 0, 1)) { currentPiece.y++; gameScore += 2; } setScore(gameScore); sounds.hardDrop(); lock(); };
+        const move = (dir) => { if (!collision(currentPiece, dir, 0)) { currentPiece.x += dir; sounds.movePiece(); } };
         const rotate = () => {
             const original = currentPiece.shape.map(row => [...row]);
             currentPiece.shape = original[0].map((_, i) => original.map(row => row[i]).reverse());
             const kicks = [0, -1, 1, -2, 2];
-            for (const offset of kicks) { if (!collision(currentPiece, offset, 0)) { currentPiece.x += offset; return; } }
+            for (const offset of kicks) { if (!collision(currentPiece, offset, 0)) { currentPiece.x += offset; sounds.rotatePiece(); return; } }
             currentPiece.shape = original;
         };
 

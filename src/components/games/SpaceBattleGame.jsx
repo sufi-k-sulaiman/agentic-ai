@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { base44 } from "@/api/base44Client";
 import { X, Loader2, Award, Trophy, Target, Sparkles, Play, Search, Rocket, Crosshair, Zap, Compass, Radio, Shield, Cpu, Globe, Atom, Code, TrendingUp, Brain, Lightbulb, Bug, Ghost, Skull, Bot, Bomb } from 'lucide-react';
 import { LOGO_URL } from '@/components/NavigationConfig';
+import { sounds } from '@/lib/gameSound';
 
 // UFO ship images
 const ENEMY_SHIPS = [
@@ -377,10 +378,12 @@ export default function SpaceBattleGame({ onExit }) {
                     color: ALIEN_COLORS[Math.floor(Math.random() * ALIEN_COLORS.length)]
                 });
                 state.cameraShake = 3;
+                sounds.laserFire();
             }
             if (e.key.toLowerCase() === 'b' && state.bombs > 0) {
                 e.preventDefault();
                 state.bombs--;
+                sounds.bomb();
                 // Electronic wave bomb - create expanding ripple
                 state.waveEffects = state.waveEffects || [];
                 state.waveEffects.push({
@@ -450,7 +453,8 @@ export default function SpaceBattleGame({ onExit }) {
                         color: ALIEN_COLORS[Math.floor(Math.random() * ALIEN_COLORS.length)]
                     });
                     state.cameraShake = 3;
-                }, 400);
+                    sounds.laserFire();
+                    }, 400);
             }
         };
         
@@ -490,6 +494,7 @@ export default function SpaceBattleGame({ onExit }) {
                 state.levelComplete = true;
                 setGameScore(state.score);
                 setLevelComplete(true);
+                sounds.levelUp();
                 setScreen('quiz');
                 return;
             }
@@ -667,7 +672,8 @@ export default function SpaceBattleGame({ onExit }) {
                 if (enemy.z > 1.2) {
                     state.player.health--;
                     state.cameraShake = 10;
-                    if (state.player.health <= 0) state.gameOver = true;
+                    sounds.playerHit();
+                    if (state.player.health <= 0) { state.gameOver = true; sounds.gameOver(); }
                     return false;
                 }
 
@@ -736,6 +742,7 @@ export default function SpaceBattleGame({ onExit }) {
                         state.levelScore += 100;
                         state.aliensKilled += 1;
                         state.cameraShake = 5;
+                        sounds.explosion();
                         return false;
                     }
                 }

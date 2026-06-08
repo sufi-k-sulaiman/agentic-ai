@@ -8,6 +8,7 @@ import {
     Maximize2, Minimize2, Sparkles, Globe, Cpu, Atom, Leaf, Brain, Lightbulb, TrendingUp
 } from 'lucide-react';
 import { LOGO_URL } from '@/components/NavigationConfig';
+import { sounds } from '@/lib/gameSound';
 
 // Tank images
 const PLAYER_TANK = 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/692729a5f5180fbd43f297e9/dca90a2df_tank1.png';
@@ -513,6 +514,7 @@ export default function TankCity({ onExit }) {
         }
 
         const shoot = (tank, friendly) => {
+            sounds.shoot();
             let bx = tank.x + TILE / 2;
             let by = tank.y + TILE / 2;
             const offset = TILE / 2 + 5;
@@ -683,6 +685,7 @@ export default function TankCity({ onExit }) {
                             if (brick.health <= 0) {
                                     state.score += 100;
                                     state.wordsDestroyed++;
+                                    sounds.wordDestroyed();
                                     console.log('Word destroyed:', state.wordsDestroyed, '/', state.totalWords);
                                     setScore(state.score);
                                     setWordsDestroyed(state.wordsDestroyed);
@@ -705,6 +708,7 @@ export default function TankCity({ onExit }) {
                 
                 if (distToBase < TILE * 1.8 && state.shieldHealth > 0 && !bullet.friendly) {
                     state.shieldHealth--;
+                    sounds.shieldHit();
                     spawnParticles(bullet.x, bullet.y, '#00ddff', 20);
                     
                     // When shield depleted, create massive explosion
@@ -731,6 +735,7 @@ export default function TankCity({ onExit }) {
                 if (bullet.x > baseX && bullet.x < baseX + TILE * 2 &&
                     bullet.y > baseY && bullet.y < baseY + TILE * 1.5) {
                     state.baseDestroyed = true;
+                    sounds.bigExplosion();
                     // Massive game-ending explosion
                     for (let e = 0; e < 200; e++) {
                         const angle = (Math.PI * 2 * e) / 200;
@@ -774,6 +779,7 @@ export default function TankCity({ onExit }) {
                             state.enemies.splice(i, 1);
                             state.score += 200;
                             state.enemiesLeft--;
+                            sounds.explosion();
                             console.log('Enemy killed. Left:', state.enemiesLeft, 'Alive:', state.enemies.length, 'ToSpawn:', state.enemiesTotal);
                             setScore(state.score);
                             setEnemiesLeft(state.enemiesLeft);
@@ -799,9 +805,11 @@ export default function TankCity({ onExit }) {
                             });
                         }
                         state.lives--;
+                        sounds.playerHit();
                         setLives(state.lives);
                         if (state.lives <= 0) {
                             state.gameOver = true;
+                            sounds.gameOver();
                         } else {
                             state.player.x = canvas.width / 2 - TILE / 2;
                             state.player.y = canvas.height - TILE * 5;
@@ -1247,6 +1255,7 @@ export default function TankCity({ onExit }) {
             if (!state.levelComplete && allWordsDestroyed && allEnemiesKilled) {
                 console.log('LEVEL COMPLETE TRIGGERED!');
                 state.levelComplete = true;
+                sounds.levelUp();
             }
             
             draw();

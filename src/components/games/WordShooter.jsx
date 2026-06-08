@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Maximize2, Minimize2, Loader2, Zap, Book, Layers, Play, Search, X, Sparkles, Globe, Cpu, Atom, Leaf, Brain, Lightbulb, TrendingUp } from "lucide-react";
 import { LOGO_URL } from '@/components/NavigationConfig';
 import { base44 } from "@/api/base44Client";
+import { sounds } from '@/lib/gameSound';
 
 export default function WordShooter({ onExit }) {
   const [screen, setScreen] = useState('title');
@@ -328,10 +329,12 @@ export default function WordShooter({ onExit }) {
       for(let i=0; i<5; i++) {
         state.particles.push({ x: state.playerX, y: state.playerY - 40, vx: (Math.random() - 0.5) * 4, vy: -Math.random() * 3 - 1, life: 20, maxLife: 20, size: 3, color: '#a78bfa' });
       }
+      sounds.shoot();
     }
 
     function deployBomb() {
       state.bombs--;
+      sounds.bomb();
       state.shockwave = { x: canvas.width / 2, y: canvas.height / 2, radius: 0, maxRadius: Math.max(canvas.width, canvas.height) * 1.5, life: 80, maxLife: 80 };
       state.flash = 30;
       state.asteroids.forEach(ast => explodeAsteroid(ast, true));
@@ -397,9 +400,10 @@ export default function WordShooter({ onExit }) {
         state.score += baseBonus;
         state.wordsCompleted++;
         if (state.combo > state.maxCombo) state.maxCombo = state.combo;
+        if (state.combo >= 3) sounds.combo(); else sounds.wordDestroyed();
       } else {
         state.score += 50 * Math.max(state.combo, 1);
-        if (!isBomb) state.combo = 0;
+        if (!isBomb) { state.combo = 0; sounds.explosion(); }
       }
     }
 
@@ -548,7 +552,7 @@ export default function WordShooter({ onExit }) {
             state.bullets.splice(i, 1); explodeAsteroid(ast); return false;
           }
         }
-        if (ast.y > h + 100) { state.playerHealth--; state.combo = 0; if (state.playerHealth <= 0) state.gameOver = true; return false; }
+        if (ast.y > h + 100) { state.playerHealth--; state.combo = 0; sounds.playerHit(); if (state.playerHealth <= 0) { state.gameOver = true; sounds.gameOver(); } return false; }
         return true;
       });
 
@@ -656,6 +660,7 @@ export default function WordShooter({ onExit }) {
       // Check if all words destroyed - level complete
       if (state.wordsCompleted >= state.totalWords && state.asteroids.length === 0 && !state.gameOver) {
         state.gameOver = true;
+        sounds.levelUp();
       }
       
       if (state.gameOver) {
