@@ -1,4 +1,3 @@
-
 import { Globe, Sparkles, BarChart3, Gamepad2, Settings, Radio, Brain, GraduationCap, ListTodo, StickyNote, Lightbulb, ScrollText, Newspaper, Shield, Smartphone } from 'lucide-react';
 import { createPageUrl } from '@/utils';
 
@@ -10,7 +9,6 @@ export const menuItems = [
     { label: 'SearchPods', icon: Radio, href: createPageUrl('SearchPods') },
     { label: 'News', icon: Newspaper, href: createPageUrl('News') },
     { label: 'Learning', icon: GraduationCap, href: createPageUrl('Learning') },
-    { label: 'Geospatial', icon: Globe, href: createPageUrl('Geospatial') },
     { label: 'Intelligence', icon: Lightbulb, href: createPageUrl('Intelligence') },
     { label: 'Games', icon: Gamepad2, href: createPageUrl('Games') },
     { label: 'Appstore', icon: Smartphone, href: createPageUrl('Appstore') },
@@ -29,4 +27,5 @@ export const NAVIGATION_ITEMS = menuItems.map(item => ({
 export const footerLinks = [
     { label: 'Terms of Use', href: '/TermsOfUse' },
     { label: 'Contact Us', href: '/ContactUs' },
+    { label: 'Sufi Khan Sulaiman', href: '/SufiKhanSulaiman' },
 ];
