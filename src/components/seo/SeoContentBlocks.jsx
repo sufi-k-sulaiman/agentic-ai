@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Lightbulb, Target, Sparkles, TrendingUp } from 'lucide-react';
 
 const ICONS = [Lightbulb, Target, Sparkles, TrendingUp];
@@ -20,7 +21,10 @@ export default function SeoContentBlocks({ blocks = [], author = 'Sufi Khan Sula
             How to Use This Application
           </h2>
           <p className="text-gray-500 text-sm">
-            Practical use cases and capabilities, authored by {author}
+            Practical use cases and capabilities, authored by{' '}
+            <Link to="/SufiKhanSulaiman" className="font-medium text-purple-700 hover:text-purple-900 underline-offset-2 hover:underline">
+              {author}
+            </Link>
           </p>
         </div>
 
@@ -46,7 +50,11 @@ export default function SeoContentBlocks({ blocks = [], author = 'Sufi Khan Sula
         </div>
 
         <p className="text-center text-xs text-gray-400 mt-6">
-          Content by {author} — {new Date().getFullYear()}
+          Content by{' '}
+          <Link to="/SufiKhanSulaiman" className="font-medium text-purple-700 hover:text-purple-900">
+            {author}
+          </Link>{' '}
+          — {new Date().getFullYear()}
         </p>
       </div>
     </section>
