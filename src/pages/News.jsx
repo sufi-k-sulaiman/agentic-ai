@@ -13,6 +13,8 @@ import { toast } from 'sonner';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ErrorDisplay, { LoadingState, getErrorCode } from '@/components/ErrorDisplay';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
 
 import { Monitor, TrendingUp as BusinessIcon, FlaskConical, HeartPulse, Landmark, Trophy, Clapperboard, Globe2, ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -489,6 +491,7 @@ export default function News() {
                 )}
                 </div>
                 </div>
+                <SeoContentBlocks blocks={seoContent.News} />
                 </>
                 );
                 }

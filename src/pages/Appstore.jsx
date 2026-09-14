@@ -2,6 +2,8 @@ import React from 'react';
 import PageMeta from '@/components/PageMeta';
 import { ExternalLink, Smartphone, Download, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
 
 export default function Appstore() {
 
@@ -165,6 +167,7 @@ export default function Appstore() {
                 </div>
                 </div>
                 </div>
+                <SeoContentBlocks blocks={seoContent.Appstore} />
                 </>
                 );
                 }

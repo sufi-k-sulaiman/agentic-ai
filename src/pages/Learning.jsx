@@ -17,6 +17,8 @@ import { Button } from "@/components/ui/button";
 import LearningIslandCard from '@/components/learning/LearningIslandCard';
 import CourseModal from '@/components/learning/CourseModal';
 import { SUBJECTS, CATEGORIES } from '@/components/learning/SubjectData';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
 
 const ICON_MAP = {
     Telescope, Mountain, Waves, Cloud, TreePine, Bug, Flower2, 
@@ -442,6 +444,7 @@ export default function Learning() {
                 onComplete={handleCourseComplete}
             />
             </div>
+            <SeoContentBlocks blocks={seoContent.Learning} />
         </>
     );
 }

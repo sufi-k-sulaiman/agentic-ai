@@ -13,6 +13,8 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
 import { ERROR_CODES, getErrorCode } from '@/components/ErrorDisplay';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
 
 const CATEGORIES = [
     { id: 'hope', name: 'Hope', color: '#10B981', episodes: 8 },
@@ -1326,6 +1328,7 @@ export default function SearchPods() {
                 </DialogContent>
                 </Dialog>
                 </div>
+                <SeoContentBlocks blocks={seoContent.SearchPods} />
                 </>
                 );
                 }

@@ -16,6 +16,8 @@ import CountryComparison from '@/components/geospatial/CountryComparison';
 import MapModal from '@/components/geospatial/MapModal';
 import AnalysisFrameworks from '@/components/geospatial/AnalysisFrameworks';
 import DynamicCardContent from '@/components/geospatial/DynamicCardContent';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
 
 // Group categories by tab
 const MAP_TABS = [
@@ -344,6 +346,7 @@ export default function Geospatial() {
                 />
             )}
             </div>
+            <SeoContentBlocks blocks={seoContent.Geospatial} />
         </>
     );
 }

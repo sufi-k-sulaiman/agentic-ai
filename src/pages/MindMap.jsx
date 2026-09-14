@@ -11,6 +11,8 @@ import { jsPDF } from 'jspdf';
 import LearnMoreModal from '../components/mindmap/LearnMoreModal';
 import ErrorDisplay, { getErrorCode } from '@/components/ErrorDisplay';
 import TopicThumbnail from '@/components/mindmap/TopicThumbnail';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
 
 const NODE_COLORS = [
     { bg: 'bg-purple-500' },
@@ -787,6 +789,7 @@ export default function MindMapPage() {
                 />
             )}
             </div>
+            <SeoContentBlocks blocks={seoContent.MindMap} />
         </>
     );
 }

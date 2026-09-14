@@ -9,6 +9,8 @@ import {
 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { BarChart, Bar, PieChart, Pie, Cell, LineChart, Line, RadarChart, Radar, PolarGrid, PolarAngleAxis, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
 
 // Helper to extract domain from URL
 const extractDomain = (url) => {
@@ -1065,6 +1067,7 @@ export default function Intelligence() {
                     )}
                     </div>
                     </div>
+                    <SeoContentBlocks blocks={seoContent.Intelligence} />
                     </>
                     );
                     }

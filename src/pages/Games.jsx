@@ -7,6 +7,8 @@ import SpaceBattleGame from '@/components/games/SpaceBattleGame';
 import TankCity from '@/components/games/TankCity';
 import TetrisGalaxy from '@/components/games/TetrisGalaxy';
 import { Button } from '@/components/ui/button';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
 
 export default function Games() {
     // Update URL for display only (aesthetic, not parsed)
@@ -135,6 +137,7 @@ like fun.</p>
                 </div>
             </div>
         </div>
+        <SeoContentBlocks blocks={seoContent.Games} />
         </>
     );
 }

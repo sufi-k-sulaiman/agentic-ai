@@ -27,6 +27,8 @@ import {
 } from "@/components/ui/table";
 import { toast } from 'sonner';
 import { ERROR_CODES, getErrorCode } from '@/components/ErrorDisplay';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
 
 // AI Model Icons - Real brand colors and designs
 
@@ -907,6 +909,7 @@ I need 10 reviews with: title, intro, and reviews array (name, rating 1-10, text
             />
             <div className="min-h-screen bg-white p-4 md:p-8">
                 <div className="max-w-4xl mx-auto">
+                <SeoContentBlocks blocks={seoContent.Qwirey} />
                 
 
                 {/* Model Selection */}

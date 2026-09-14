@@ -11,6 +11,8 @@ import { toast } from 'sonner';
 
 import TaskColumn from '../components/tasks/TaskColumn';
 import TaskModal from '../components/tasks/TaskModal';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
 
 const STATUSES = ['todo', 'in_progress', 'review', 'done'];
 const TASK_CATEGORIES = [
@@ -253,6 +255,7 @@ const TasksPage = () => {
         />
         </div>
       </div>
+      <SeoContentBlocks blocks={seoContent.Tasks} />
     </>
   );
 };
