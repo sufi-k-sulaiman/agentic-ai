@@ -4,6 +4,9 @@ import { ExternalLink, Smartphone, Download, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
 import { seoContent } from '@/components/seo/seoContent';
+import { webApplicationSchema } from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import FaqSection from '@/components/seo/FaqSection';
 
 export default function Appstore() {
 
@@ -62,13 +65,23 @@ export default function Appstore() {
 
     return (
         <>
-            <PageMeta 
-                title="App Store - Mobile Apps"
-                description="Download our AI-powered mobile applications for iOS: SearchPods, Neural MindMap, and RoutineOps."
-                keywords="iOS apps, mobile apps, AI apps, SearchPods, MindMap, RoutineOps, app store"
+            <PageMeta
+                title="App Store - AI-Powered Mobile Apps"
+                description="Download AI-powered mobile applications for iOS: SearchPods, Neural MindMap, and RoutineOps. Browse a curated collection of AI apps for productivity, learning, and business."
+                keywords="iOS apps, mobile apps, AI apps, SearchPods, MindMap, RoutineOps, app store, AI productivity apps, AI learning apps"
+                canonicalPath="/Appstore"
+                jsonLd={webApplicationSchema({
+                  name: 'Appstore — AI App Collection',
+                  description: 'Curated collection of AI-powered mobile applications for productivity, learning, and business.',
+                  url: '/Appstore',
+                  category: 'BusinessApplication',
+                })}
             />
             <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6">
                 <div className="max-w-7xl mx-auto">
+                <div className="mb-4">
+                    <Breadcrumbs items={[{ name: 'Appstore', path: '/Appstore' }]} />
+                </div>
                 {/* Header */}
                 <div className="text-center mb-12">
                     <div className="inline-flex items-center gap-2 mb-4">
@@ -167,7 +180,8 @@ export default function Appstore() {
                 </div>
                 </div>
                 </div>
-                <SeoContentBlocks blocks={seoContent.Appstore} />
+                <FaqSection pageKey="Appstore" />
+            <SeoContentBlocks blocks={seoContent.Appstore} />
                 </>
                 );
                 }

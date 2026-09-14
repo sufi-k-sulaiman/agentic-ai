@@ -9,6 +9,9 @@ import TetrisGalaxy from '@/components/games/TetrisGalaxy';
 import { Button } from '@/components/ui/button';
 import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
 import { seoContent } from '@/components/seo/seoContent';
+import { webApplicationSchema } from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import FaqSection from '@/components/seo/FaqSection';
 
 export default function Games() {
     // Update URL for display only (aesthetic, not parsed)
@@ -62,13 +65,23 @@ export default function Games() {
 
     return (
         <>
-            <PageMeta 
-                title="Gamified Education"
-                description="Space battle and word shooters make education engaging, interactive, and boost learning through AI-powered games."
-                keywords="gamification, educational games, learning games, AI games, vocabulary games"
+            <PageMeta
+                title="Gamified Education - Educational Arcade Games"
+                description="Educational arcade games — Word Shooter, Space Battle, Cosmic Tank, and Tetris Galaxy — that make learning vocabulary, science, and math fun with AI-generated content and progressive difficulty."
+                keywords="gamification, educational games, learning games, AI games, vocabulary games, Word Shooter, Space Battle, Tetris Galaxy, Cosmic Tank"
+                canonicalPath="/Games"
+                jsonLd={webApplicationSchema({
+                  name: 'Games — Educational Arcade',
+                  description: 'Arcade-style educational games with AI-generated content for vocabulary, science, and math learning.',
+                  url: '/Games',
+                  category: 'GameApplication',
+                })}
             />
             <div className="min-h-screen bg-gray-50 p-6">
                 <div className="max-w-6xl mx-auto">
+                <div className="mb-4">
+                    <Breadcrumbs items={[{ name: 'Games', path: '/Games' }]} />
+                </div>
                 <div className="text-center mb-8">
                     <div className="inline-flex items-center gap-3 mb-4">
                         <h1 className="text-2xl md:text-3xl font-bold text-gray-900">Gamified Education</h1>
@@ -137,6 +150,7 @@ like fun.</p>
                 </div>
             </div>
         </div>
+        <FaqSection pageKey="Games" />
         <SeoContentBlocks blocks={seoContent.Games} />
         </>
     );

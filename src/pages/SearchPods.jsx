@@ -15,6 +15,9 @@ import { Progress } from "@/components/ui/progress";
 import { ERROR_CODES, getErrorCode } from '@/components/ErrorDisplay';
 import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
 import { seoContent } from '@/components/seo/seoContent';
+import { webApplicationSchema } from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import FaqSection from '@/components/seo/FaqSection';
 
 const CATEGORIES = [
     { id: 'hope', name: 'Hope', color: '#10B981', episodes: 8 },
@@ -815,13 +818,21 @@ export default function SearchPods() {
 
     return (
         <>
-            <PageMeta 
-                title="SearchPods - AI Podcasts"
-                description="SearchPods delivers AI-generated audio podcasts on any topic, making discovery simple and productivity smarter."
-                keywords="AI podcasts, SearchPods, generated podcasts, audio content, podcast discovery"
+            <PageMeta
+                title="SearchPods - AI-Generated Podcasts"
+                description="SearchPods delivers AI-generated audio podcasts on any topic, making discovery simple and productivity smarter. Find curated, topic-driven search results organized into thematic pods with real-time web intelligence."
+                keywords="AI podcasts, SearchPods, generated podcasts, audio content, podcast discovery, topic search, web intelligence, audio learning"
+                canonicalPath="/SearchPods"
+                jsonLd={webApplicationSchema({
+                  name: 'SearchPods — AI Podcast Search',
+                  description: 'AI-generated audio podcasts and topic-driven search with thematic pods for comprehensive coverage.',
+                  url: '/SearchPods',
+                  category: 'SearchApplication',
+                })}
             />
             <div className="min-h-screen bg-gray-50 pb-8">
                 <main className="max-w-7xl mx-auto px-4 md:px-6 pt-6 space-y-8">
+                    <Breadcrumbs items={[{ name: 'SearchPods', path: '/SearchPods' }]} />
 
                 {/* Trending Section */}
                 <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl border border-purple-100 p-6">
@@ -1328,7 +1339,8 @@ export default function SearchPods() {
                 </DialogContent>
                 </Dialog>
                 </div>
-                <SeoContentBlocks blocks={seoContent.SearchPods} />
+                <FaqSection pageKey="SearchPods" />
+            <SeoContentBlocks blocks={seoContent.SearchPods} />
                 </>
                 );
                 }

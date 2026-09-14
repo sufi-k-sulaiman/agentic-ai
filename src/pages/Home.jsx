@@ -3,6 +3,9 @@ import PageMeta from '@/components/PageMeta';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Sparkles, Radio, Brain, BarChart3, GraduationCap, ListTodo, Lightbulb, StickyNote, Newspaper, Gamepad2, Globe, Smartphone } from "lucide-react";
+import { organizationSchema, websiteSchema } from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import FaqSection from '@/components/seo/FaqSection';
 
 const pages = [
     { name: 'Qwirey', page: 'Qwirey', icon: Sparkles, description: 'Your all-in-one Ai assistant, powered by Qwirey', color: '#6209e6', colorEnd: '#4f46e5' },
@@ -22,13 +25,18 @@ export default function HomePage() {
 
     return (
         <>
-            <PageMeta 
+            <PageMeta
                 title="Home - AI Platform"
-                description="AI-powered platform with smart agents designed to boost productivity, efficiency, and growth across all domains."
-                keywords="1cPublishing, AI platform, AI agents, productivity tools, smart automation"
+                description="AI-powered platform with autonomous AI agents for research, news, learning, games, and productivity. Built by technology executive Sufi Khan Sulaiman to boost efficiency across all domains."
+                keywords="1cPublishing, AI platform, AI agents, productivity tools, smart automation, Sufi Khan Sulaiman, AI research, educational games"
+                canonicalPath="/"
+                jsonLd={[organizationSchema(), websiteSchema()]}
             />
             <div className="p-4 md:p-8">
                 <div className="max-w-5xl mx-auto">
+                <div className="mb-4">
+                    <Breadcrumbs items={[]} />
+                </div>
                 <h1 className="text-2xl md:text-3xl font-bold mb-2 text-gray-800">Welcome to Agentic Ai Demo</h1>
                 <p className="mb-6 md:mb-8 text-gray-600">Agentic Ai from the <a href="https://1cplatform.com/" target="_blank"  rel="noopener noreferrer" className="text-x font-medium" style={{ color: '#6209e6' }}>1C Platform</a> introduces a new generation of autonomous Ai agents engineered to operate with minimal human oversight. Instead of relying on predefined scripts, these agents apply cognitive reasoning to interpret context, detect patterns, and make informed decisions in real time. Their architecture is optimized for speed and scale, allowing them to process tasks in under 100 milliseconds and execute millions of micro‑actions per day. This combination of rapid computation and contextual intelligence positions the system as a powerful engine for high throughput automation.
 </p>
@@ -59,6 +67,7 @@ By combining autonomy, speed, collaboration, and adaptive learning, Agentic Ai p
                 </div>
             </div>
         </div>
+        <FaqSection pageKey="Home" />
         </>
     );
 }

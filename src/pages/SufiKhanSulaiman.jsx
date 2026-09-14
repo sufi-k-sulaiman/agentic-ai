@@ -8,6 +8,9 @@ import {
 import PageMeta from '@/components/PageMeta';
 import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
 import { seoContent } from '@/components/seo/seoContent';
+import { personSchema } from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import FaqSection from '@/components/seo/FaqSection';
 
 const APP_LINKS = [
   { name: 'Qwirey', icon: Sparkles, path: '/Qwirey', color: 'text-purple-600', bg: 'bg-purple-50' },
@@ -91,8 +94,13 @@ export default function SufiKhanSulaiman() {
         title="Sufi Khan Sulaiman — Technology Executive, E-Commerce Strategist & AI Developer"
         description="Sufi Khan Sulaiman is an experienced technology executive, e-commerce strategist, and digital automation specialist with 20+ years building large-scale software systems. Explore his AI platform suite including Qwirey, MindMap, SearchPods, Games, and more."
         keywords="Sufi Khan Sulaiman, technology executive, e-commerce strategist, CTO, VP of Technology, AI developer, digital automation, 1cPlatform, Lorex, distributed systems, software engineering leader"
+        canonicalPath="/SufiKhanSulaiman"
+        jsonLd={personSchema()}
       />
       <div className="min-h-screen bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 pt-4">
+          <Breadcrumbs items={[{ name: 'Sufi Khan Sulaiman', path: '/SufiKhanSulaiman' }]} />
+        </div>
         {/* Hero / Bio */}
         <section className="bg-gradient-to-br from-purple-900 via-indigo-800 to-blue-900 text-white">
           <div className="max-w-4xl mx-auto px-4 py-16 md:py-20">
@@ -204,6 +212,9 @@ export default function SufiKhanSulaiman() {
             })}
           </div>
         </section>
+
+        {/* FAQ Section */}
+        <FaqSection pageKey="SufiKhanSulaiman" />
 
         {/* All SEO Content Blocks */}
         <SeoContentBlocks blocks={ALL_BLOCKS} />

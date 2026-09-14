@@ -13,6 +13,9 @@ import TaskColumn from '../components/tasks/TaskColumn';
 import TaskModal from '../components/tasks/TaskModal';
 import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
 import { seoContent } from '@/components/seo/seoContent';
+import { webApplicationSchema } from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import FaqSection from '@/components/seo/FaqSection';
 
 const STATUSES = ['todo', 'in_progress', 'review', 'done'];
 const TASK_CATEGORIES = [
@@ -126,13 +129,23 @@ const TasksPage = () => {
 
   return (
     <>
-      <PageMeta 
-        title="Tasks - Project Management"
-        description="Tasks management software with AI that streamlines workflows and boosts productivity with smart organization."
-        keywords="tasks management software, project management, task tracking, productivity, workflow"
+      <PageMeta
+        title="Tasks - AI Project Management"
+        description="Tasks management software with AI that streamlines workflows and boosts productivity with smart organization. Visual Kanban boards, priority management, due dates, attachments, and real-time team collaboration."
+        keywords="tasks management software, project management, task tracking, productivity, workflow, Kanban board, team collaboration, priority management"
+        canonicalPath="/Tasks"
+        jsonLd={webApplicationSchema({
+          name: 'Tasks — Kanban Task Manager',
+          description: 'AI-powered Kanban task management with priorities, due dates, attachments, and real-time collaboration.',
+          url: '/Tasks',
+          category: 'BusinessApplication',
+        })}
       />
       <div className="min-h-screen bg-gray-50 p-4 md:p-6">
         <div className="max-w-full mx-auto">
+        <div className="mb-4">
+            <Breadcrumbs items={[{ name: 'Tasks', path: '/Tasks' }]} />
+        </div>
         <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
                     <div>
@@ -255,7 +268,8 @@ const TasksPage = () => {
         />
         </div>
       </div>
-      <SeoContentBlocks blocks={seoContent.Tasks} />
+      <FaqSection pageKey="Tasks" />
+            <SeoContentBlocks blocks={seoContent.Tasks} />
     </>
   );
 };

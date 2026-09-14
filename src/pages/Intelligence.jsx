@@ -11,6 +11,9 @@ import { base44 } from '@/api/base44Client';
 import { BarChart, Bar, PieChart, Pie, Cell, LineChart, Line, RadarChart, Radar, PolarGrid, PolarAngleAxis, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from 'recharts';
 import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
 import { seoContent } from '@/components/seo/seoContent';
+import { webApplicationSchema } from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import FaqSection from '@/components/seo/FaqSection';
 
 // Helper to extract domain from URL
 const extractDomain = (url) => {
@@ -979,13 +982,23 @@ export default function Intelligence() {
 
     return (
         <>
-            <PageMeta 
-                title="General Intelligence"
-                description="Intelligence platform delivering automated insights and smarter decisions for growth across all knowledge domains."
-                keywords="AI intelligence, knowledge base, general intelligence, automated insights, research data"
+            <PageMeta
+                title="General Intelligence - AI Predictive Analytics"
+                description="Intelligence platform delivering automated insights and smarter decisions for growth across all knowledge domains. Multi-source intelligence gathering with AI-driven analysis frameworks, scenario modeling, and collaborative reports."
+                keywords="AI intelligence, knowledge base, general intelligence, automated insights, research data, predictive analytics, scenario modeling, competitive intelligence, market research"
+                canonicalPath="/Intelligence"
+                jsonLd={webApplicationSchema({
+                  name: 'Intelligence — AI Predictive Analytics',
+                  description: 'Multi-source intelligence platform with AI-driven analysis frameworks and scenario modeling.',
+                  url: '/Intelligence',
+                  category: 'BusinessApplication',
+                })}
             />
             <div className="min-h-screen bg-gray-50 p-4 md:p-6">
                 <div className="max-w-6xl mx-auto">
+                <div className="mb-4">
+                    <Breadcrumbs items={[{ name: 'Intelligence', path: '/Intelligence' }]} />
+                </div>
                 {/* Header */}
                 <div className="bg-gradient-to-r from-purple-800 to-indigo-600 rounded-2xl p-6 mb-6 text-white">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -1067,7 +1080,8 @@ export default function Intelligence() {
                     )}
                     </div>
                     </div>
-                    <SeoContentBlocks blocks={seoContent.Intelligence} />
+                    <FaqSection pageKey="Intelligence" />
+            <SeoContentBlocks blocks={seoContent.Intelligence} />
                     </>
                     );
                     }

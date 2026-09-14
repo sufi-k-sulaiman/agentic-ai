@@ -13,6 +13,9 @@ import ErrorDisplay, { getErrorCode } from '@/components/ErrorDisplay';
 import TopicThumbnail from '@/components/mindmap/TopicThumbnail';
 import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
 import { seoContent } from '@/components/seo/seoContent';
+import { webApplicationSchema } from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import FaqSection from '@/components/seo/FaqSection';
 
 const NODE_COLORS = [
     { bg: 'bg-purple-500' },
@@ -534,16 +537,24 @@ export default function MindMapPage() {
 
     return (
         <>
-            <PageMeta 
-                title="Neural MindMap"
-                description="AI neural networks create interactive knowledge trees to explore and visualize complex topics."
-                keywords="mind mapping, AI MindMap, knowledge visualization, neural networks, interactive learning"
+            <PageMeta
+                title="Neural MindMap - AI Knowledge Visualization"
+                description="AI-powered mind mapping tool that creates interactive knowledge trees to explore and visualize complex topics. Generate structured mind maps with AI, save and revisit your maps, and improve study retention."
+                keywords="mind mapping, AI MindMap, knowledge visualization, neural networks, interactive learning, brainstorming, study guides, concept maps"
+                canonicalPath="/MindMap"
+                jsonLd={webApplicationSchema({
+                  name: 'Neural MindMap — AI Knowledge Visualization',
+                  description: 'AI-powered mind mapping tool for interactive knowledge trees and visual topic exploration.',
+                  url: '/MindMap',
+                  category: 'EducationalApplication',
+                })}
             />
             <div
                 ref={containerRef}
                 className={`min-h-screen bg-gray-50 ${isFullscreen ? 'p-1 overflow-auto' : 'p-1'}`}
             >
             <div className={`${isFullscreen ? 'max-w-none' : 'max-w-[96rem] mx-auto'}`}>
+                {!isFullscreen && <div className="mb-3 px-1"><Breadcrumbs items={[{ name: 'MindMap', path: '/MindMap' }]} /></div>}
                 {/* Mind Map Content */}
                 <div className={`bg-white rounded-xl border border-gray-200 ${isFullscreen ? 'h-[calc(100vh-8px)]' : 'h-[calc(100vh-16px)]'} overflow-hidden p-2`}>
                     {/* Header inside the card */}
@@ -789,6 +800,7 @@ export default function MindMapPage() {
                 />
             )}
             </div>
+            <FaqSection pageKey="MindMap" />
             <SeoContentBlocks blocks={seoContent.MindMap} />
         </>
     );

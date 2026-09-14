@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /functions/
+
+# Sitemap
+Sitemap: https://agentic-ai.base44.app/sitemap.xml

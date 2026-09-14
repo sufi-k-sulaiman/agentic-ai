@@ -16,6 +16,9 @@ import ErrorDisplay, { LoadingState, getErrorCode } from '@/components/ErrorDisp
 import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
 import SufiBioBlock from '@/components/seo/SufiBioBlock';
 import { seoContent } from '@/components/seo/seoContent';
+import { webApplicationSchema } from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import FaqSection from '@/components/seo/FaqSection';
 
 import { Monitor, TrendingUp as BusinessIcon, FlaskConical, HeartPulse, Landmark, Trophy, Clapperboard, Globe2, ChevronDown, ChevronUp } from 'lucide-react';
 
@@ -336,10 +339,17 @@ export default function News() {
 
     return (
         <>
-            <PageMeta 
+            <PageMeta
                 title="News - Global News Hub"
-                description="Global hub for trusted news articles, delivering accurate reporting and insights worldwide with AI-powered aggregation."
-                keywords="news articles, world news, breaking news, news aggregator, AI news"
+                description="Global hub for trusted news articles, delivering accurate reporting and insights worldwide with AI-powered aggregation and source verification."
+                keywords="news articles, world news, breaking news, news aggregator, AI news, real-time news, verified news sources"
+                canonicalPath="/News"
+                jsonLd={webApplicationSchema({
+                  name: 'News — AI News Aggregator',
+                  description: 'AI-powered news aggregator pulling headlines from trusted sources across business, technology, sports, and world events with AI-generated summaries and source verification.',
+                  url: '/News',
+                  category: 'NewsApplication',
+                })}
             />
             <div className="min-h-screen bg-gray-50 p-4 md:p-6">
                 <style>{pulseAnimation}</style>
@@ -360,6 +370,10 @@ export default function News() {
                             </div>
                         )}
                     </div>
+                </div>
+
+                <div className="mb-4">
+                    <Breadcrumbs items={[{ name: 'News', path: '/News' }]} />
                 </div>
 
                 {/* Search Bar */}
@@ -493,6 +507,7 @@ export default function News() {
                 </div>
                 </div>
                 <SufiBioBlock />
+                <FaqSection pageKey="News" />
                 <SeoContentBlocks blocks={seoContent.News} />
                 </>
                 );

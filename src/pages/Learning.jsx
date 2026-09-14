@@ -19,6 +19,9 @@ import CourseModal from '@/components/learning/CourseModal';
 import { SUBJECTS, CATEGORIES } from '@/components/learning/SubjectData';
 import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
 import { seoContent } from '@/components/seo/seoContent';
+import { webApplicationSchema, courseSchema } from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import FaqSection from '@/components/seo/FaqSection';
 
 const ICON_MAP = {
     Telescope, Mountain, Waves, Cloud, TreePine, Bug, Flower2, 
@@ -246,12 +249,30 @@ export default function Learning() {
 
     return (
         <>
-            <PageMeta 
-                title="Learning Archipelago"
-                description="Learning Archipelago uses AI agents to create automated learning islands for growth on all subjects with gamified progression."
-                keywords="Learning Archipelago, learning islands, AI education, gamified learning, online courses"
+            <PageMeta
+                title="Learning Archipelago - AI Education Platform"
+                description="Learning Archipelago uses AI to create interactive learning islands with gamified progression across all subjects. AI-generated course content, educational games, and progress tracking for students and lifelong learners."
+                keywords="Learning Archipelago, learning islands, AI education, gamified learning, online courses, AI-generated courses, educational games, progress tracking"
+                canonicalPath="/Learning"
+                jsonLd={[
+                  webApplicationSchema({
+                    name: 'Learning — AI Education Platform',
+                    description: 'Interactive island-based AI education platform with gamified learning and progress tracking.',
+                    url: '/Learning',
+                    category: 'EducationalApplication',
+                  }),
+                  courseSchema([
+                    { name: 'Mathematics', description: 'AI-generated learning path for mathematics with interactive lessons and practice questions.' },
+                    { name: 'Science', description: 'Explore biology, physics, chemistry, and more with AI-generated course content and gamified reinforcement.' },
+                    { name: 'History', description: 'Interactive history courses with visual island-based navigation and progress tracking.' },
+                    { name: 'Computer Science', description: 'Learn programming and computer science concepts through AI-generated lessons and educational games.' },
+                  ]),
+                ]}
             />
             <div className="min-h-screen bg-gradient-to-b from-indigo-50 via-white to-purple-50">
+            <div className="mx-4 md:mx-8 mt-4">
+                <Breadcrumbs items={[{ name: 'Learning', path: '/Learning' }]} />
+            </div>
             {/* Top Row - Header Left, Subject Selector Right */}
             <div className="mx-4 md:mx-8 mt-4 flex flex-col lg:flex-row gap-4">
                 {/* Hero Banner - Left */}
@@ -444,6 +465,7 @@ export default function Learning() {
                 onComplete={handleCourseComplete}
             />
             </div>
+            <FaqSection pageKey="Learning" />
             <SeoContentBlocks blocks={seoContent.Learning} />
         </>
     );

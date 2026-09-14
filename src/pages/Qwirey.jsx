@@ -28,6 +28,9 @@ import {
 import { toast } from 'sonner';
 import { ERROR_CODES, getErrorCode } from '@/components/ErrorDisplay';
 import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { webApplicationSchema } from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import FaqSection from '@/components/seo/FaqSection';
 import { seoContent } from '@/components/seo/seoContent';
 
 // AI Model Icons - Real brand colors and designs
@@ -902,14 +905,25 @@ I need 10 reviews with: title, intro, and reviews array (name, rating 1-10, text
 
     return (
         <>
-            <PageMeta 
-                title="Qwirey - AI Agent"
-                description="AI agent that paradigm shifts and enhances your workflow. Agentic AI that adapts to create a new paradigm of productivity."
-                keywords="AI agent, agentic AI, Qwirey, AI workflow, productivity AI, intelligent assistant"
+            <PageMeta
+                title="Qwirey - AI Research Assistant"
+                description="Qwirey is an AI-powered research assistant combining large language models with live web search. Ask any question and get sourced, structured answers with document analysis and voice input."
+                keywords="AI agent, agentic AI, Qwirey, AI research assistant, AI workflow, productivity AI, intelligent assistant, document analysis, voice input"
+                canonicalPath="/Qwirey"
+                jsonLd={webApplicationSchema({
+                  name: 'Qwirey — AI Research Assistant',
+                  description: 'AI-powered research assistant combining large language models with live web search for sourced, structured answers.',
+                  url: '/Qwirey',
+                  category: 'SearchApplication',
+                })}
             />
             <div className="min-h-screen bg-white p-4 md:p-8">
                 <div className="max-w-4xl mx-auto">
-                <SeoContentBlocks blocks={seoContent.Qwirey} />
+                <div className="mb-4">
+                    <Breadcrumbs items={[{ name: 'Qwirey', path: '/Qwirey' }]} />
+                </div>
+                <FaqSection pageKey="Qwirey" />
+            <SeoContentBlocks blocks={seoContent.Qwirey} />
                 
 
                 {/* Model Selection */}
