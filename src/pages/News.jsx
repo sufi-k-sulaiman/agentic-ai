@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import ErrorDisplay, { LoadingState, getErrorCode } from '@/components/ErrorDisplay';
 import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import SufiBioBlock from '@/components/seo/SufiBioBlock';
 import { seoContent } from '@/components/seo/seoContent';
 
 import { Monitor, TrendingUp as BusinessIcon, FlaskConical, HeartPulse, Landmark, Trophy, Clapperboard, Globe2, ChevronDown, ChevronUp } from 'lucide-react';
@@ -491,6 +492,7 @@ export default function News() {
                 )}
                 </div>
                 </div>
+                <SufiBioBlock />
                 <SeoContentBlocks blocks={seoContent.News} />
                 </>
                 );
