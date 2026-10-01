@@ -11,6 +11,7 @@ import { seoContent } from '@/components/seo/seoContent';
 import { personSchema } from '@/components/seo/JsonLd';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 import FaqSection from '@/components/seo/FaqSection';
+import ConsultingFrameworks from '@/components/sufi/ConsultingFrameworks';
 
 const APP_LINKS = [
   { name: 'Qwirey', icon: Sparkles, path: '/Qwirey', color: 'text-purple-600', bg: 'bg-purple-50' },
@@ -187,6 +188,9 @@ export default function SufiKhanSulaiman() {
             </div>
           </div>
         </section>
+
+        {/* Consulting Frameworks Showcase */}
+        <ConsultingFrameworks />
 
         {/* App Links Grid */}
         <section className="max-w-4xl mx-auto px-4 py-12">
