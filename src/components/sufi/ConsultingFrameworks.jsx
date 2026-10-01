@@ -12,7 +12,7 @@ export default function ConsultingFrameworks() {
 
   return (
     <section className="bg-white border-y border-gray-200">
-      <div className="max-w-5xl mx-auto px-4 py-12">
+      <div className="w-full px-4 sm:px-6 lg:px-12 py-12">
         <h2 className="text-2xl font-bold text-gray-900 text-center mb-2">
           Consulting Frameworks in Action
         </h2>
@@ -40,7 +40,7 @@ export default function ConsultingFrameworks() {
         </div>
 
         {/* Framework grid */}
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {filtered.map((framework) => (
             <FrameworkCard key={framework.id} framework={framework} />
           ))}
