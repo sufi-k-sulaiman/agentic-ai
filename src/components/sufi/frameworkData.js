@@ -52,6 +52,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Sufi pulls CRM retention rates and ERP margin data to build a live SWOT each quarter. The 2×2 maps where 94% retention and $4.2M ARR collide with a 23% SMB churn rate and two new market entrants — turning a static slide into a decision tool.',
+      writeup2:
+        'The CRM feed surfaces retention by segment — 94% overall but 23% in SMB — while the ERP pulls gross margin and ARR growth. Web monitoring adds the external layer: competitor funding rounds, supplier cost indices, and regulatory headlines. The 2×2 is rebuilt every quarter, not annually, so shifts are caught early.',
+      writeup3:
+        'When two competitors closed funding rounds in Q2, the Threat quadrant expanded and triggered a defensive roadmap item before any churn materialized. When APAC growth hit +31%, the Opportunity quadrant drove a hiring plan within the same sprint — the SWOT became a trigger, not just a snapshot.',
   },
   {
     id: 'vrio',
@@ -83,6 +87,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Each quarter Sufi runs VRIO against the ERP resource register and CRM capability inventory to test whether the AI agent suite, the data platform, and the engineering bench create sustained advantage. Resources that fail the Rare or Inimitable test get re-architected before competitors close the gap.',
+      writeup2:
+        'The ERP resource register lists every platform asset — the AI agent suite, the data pipeline, cloud infrastructure, and the engineering bench. Each is tested against four questions: Does it add value? Is it rare? Is it hard to imitate? Is the organization structured to exploit it? A "partial" on Inimitable flags resources that need deepening before they erode.',
+      writeup3:
+        'Cloud infrastructure scored Competitive Parity — everyone has it, so it does not differentiate. That finding redirected $200K from cloud upgrades into the proprietary agent framework, which scored a sustained advantage. VRIO turns "we have a lot of capabilities" into "here is where to invest and where to stop spending."',
   },
   {
     id: 'okrs',
@@ -113,6 +121,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Sufi cascades OKRs from board objectives to weekly engineering tasks, connecting CRM pipeline targets and ERP revenue figures to individual key results. Every key result carries a live data feed — $4.2M → $6M ARR, 120 → 200 accounts — so progress is never a guess.',
+      writeup2:
+        'The board objective cascades into three measurable key results, each with a live data feed. CRM pipeline reports feed KR1 (account count), ERP retention dashboards feed KR2 (gross retention), and contract-value analytics feed KR3 (ACV). Weekly check-ins score each KR on a 0–100% confidence scale, not a subjective "on track."',
+      writeup3:
+        'When KR3 (ACV) lagged at 30% mid-quarter, two engineers shifted from feature work to enterprise pricing experiments. By quarter-end ACV climbed from $35K to $41K. OKRs without live data are wishes; OKRs with CRM and ERP feeds become a steering wheel the team can actually turn.',
   },
 
   // ── BUILDING ──────────────────────────────────────────────
@@ -143,6 +155,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'When scoping a platform redesign like Lorex, Sufi uses the Project Triangle to make the scope-time-cost trade-off explicit with ERP budget data and CRM launch-date commitments. Picking one fixed side forces the other two to flex, preventing the "all three are non-negotiable" failure mode.',
+      writeup2:
+        'The ERP allocates $1.2M for the redesign. The CRM locks the launch date to Sept 15 — marketing campaigns are already booked. The scope estimate comes in at 47 features needing 8 months, but only 6 are available. The triangle makes the conflict visible: you cannot fix all three sides.',
+      writeup3:
+        'Sufi fixed Time (non-negotiable) and let Scope and Cost flex. Scope was cut from 47 to 28 features — the 19 deferred items were ranked by CRM revenue impact and moved to Q4. Cost rose by $200K for two contract engineers. The triangle turned an impossible "everything is a priority" into a concrete trade-off document the board signed off on in one meeting.',
   },
   {
     id: 'moscow',
@@ -171,6 +187,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Sufi prioritizes the CRM-backed feature backlog into Must / Should / Could / Won\'t using ERP revenue impact and Web conversion data. Features that don\'t move a CRM metric or an ERP line item get deferred — keeping the sprint focused on what the data says matters.',
+      writeup2:
+        'The backlog of 47 feature requests came from 120 CRM accounts. Each was scored on two axes: ERP revenue impact (does this account\'s contract renewal depend on it?) and Web conversion impact (does A/B data show it moves the funnel?). SSO, API v2, and GDPR landed in Must — their absence blocks enterprise renewals. Blockchain and VR onboarding landed in Won\'t — no CRM or ERP metric moves if they are built.',
+      writeup3:
+        'The sprint shipped 10 features: 6 Must and 4 Should. The 18 Won\'t items were communicated to the requesting accounts with data-backed rationale — "we prioritized based on what your contract renewal depends on" — which reduced feature-request churn from 14% to 3%.',
   },
   {
     id: 'eisenhower',
@@ -200,6 +220,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Sufi maps the daily task queue from the Tasks module onto the Eisenhower matrix, sorting by ERP revenue impact (important) and CRM SLA deadlines (urgent). Production outages land in Do-Now; architecture reviews sit in Schedule; status meetings get delegated; email cleanup gets dropped.',
+      writeup2:
+        'The Tasks module feeds 23 open items across 4 projects. Each is tagged with urgency from CRM SLA deadlines (enterprise clients with response commitments) and importance from ERP revenue impact (does this task protect or grow a revenue line?). The matrix sorts them into four quadrants in under 60 seconds.',
+      writeup3:
+        'Quadrant 1 had 3 items — a production outage, a client demo, and a security patch — and those were done before noon. Quadrant 2 had 5 items including architecture review and Q4 planning, which were scheduled into calendar blocks. The 3 delegate items went to team leads with clear acceptance criteria. Email cleanup was eliminated entirely, reclaiming roughly 4 hours per week.',
   },
   {
     id: 'timeBlocking',
@@ -233,6 +257,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Sufi blocks his calendar using ERP project deadlines and CRM client meeting schedules — deep-work architecture from 8–10, standups and reviews 10–11, client calls 11–12. Every block ties to a deliverable, not a time-filler, turning the calendar into an execution engine.',
+      writeup2:
+        'ERP project deadlines define the hard anchors — API spec due Thursday, vendor review Friday. CRM meeting requests fill the collaboration windows. Deep-work blocks (8–10 and 14–16) are protected: no meetings, no Slack, no email. Meeting blocks are clustered, not scattered, to preserve context. Admin is time-boxed to a single hour at day\'s end.',
+      writeup3:
+        'The result is a calendar where every block ties to a deliverable. Deep work produced the API spec by Thursday; client calls closed 2 of 3 pending deals; the 1-hour admin cap prevented inbox creep from consuming the afternoon. Time blocking turned "I was busy all day" into "I shipped 3 deliverables."',
   },
 
   // ── DESIGNING ─────────────────────────────────────────────
@@ -265,6 +293,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Sufi structures every new analysis MECE — mutually exclusive, collectively exhaustive — using CRM account segments and ERP revenue lines. Enterprise, SMB, and Startup tiers never overlap and cover 100% of revenue, so no customer falls through the cracks and no dollar gets double-counted.',
+      writeup2:
+        'ERP revenue data shows $4.2M across 340 accounts. CRM segments them into Enterprise (120), SMB (80), and Startup (140) — mutually exclusive because no account appears in two tiers, collectively exhaustive because 120 + 80 + 140 = 340 = 100% of revenue. Each tier is then sub-segmented into SaaS vs Services, applying MECE again within each branch.',
+      writeup3:
+        'The MECE structure caught a blind spot: the Startup tier (140 accounts) generated only $0.3M — 7% of revenue from 41% of accounts. That insight triggered a tier-specific pricing experiment. Without MECE, the Startup segment would have been lumped into "SMB" and the inefficiency hidden.',
   },
   {
     id: 'valueDisciplines',
@@ -294,6 +326,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Sufi positions each product against the three value disciplines using ERP cost-per-transaction data and CRM NPS scores. Picking one discipline to excel at — Product Leadership in this case — focuses engineering investment where the data says the company already wins.',
+      writeup2:
+        'ERP cost-per-transaction data ($0.03/txn) scores Operational Excellence. CRM NPS (67) and retention (94%) score Customer Intimacy. Release cadence (14-day cycle) scores Product Leadership. Each discipline gets a 1–10 score from its data feed, and the highest-scoring discipline becomes the strategic anchor.',
+      writeup3:
+        'Product Leadership scored 9/10 — the 14-day release cycle is the fastest in the market. The recommendation was to double down: invest in the agent framework, shorten the cycle to 10 days, and stop spending on operational cost optimization (already at 7/10). The discipline choice redirected $400K from ops tooling to product engineering.',
   },
 
   // ── ANALYSING ─────────────────────────────────────────────
@@ -330,6 +366,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'When checkout conversion drops on the Web platform, Sufi runs the 5 Whys against ERP log data and CRM ticket trails to move past symptoms to root cause. Each "why" pulls a different data source — Web analytics, ERP inventory, CRM complaints — until the chain lands on an actionable fix.',
+      writeup2:
+        'The chain starts with Web analytics: checkout conversion dropped 12%. Why 1 pulls ERP inventory logs — page load time tripled. Why 2 pulls API telemetry — payload doubled. Why 3 pulls ERP config — uncompressed 4K images. Why 4 pulls CI logs — the optimization step was disabled by a merge. Each "why" crosses a different data system.',
+      writeup3:
+        'The root cause — a missing CI test gate for image size — was fixed in 2 hours: an automated check that blocks any PR sending images larger than 200KB. Without the 5 Whys, the team would have "optimized the cart page" (symptom) instead of "added a CI gate" (root cause). The fix prevented recurrence permanently.',
   },
   {
     id: 'pareto',
@@ -363,6 +403,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Sufi applies the 80/20 rule to ERP revenue data and CRM support tickets: 80% of $4.2M ARR comes from 20% of accounts, and 80% of tickets come from 20% of modules. Concentrating engineering effort on that 20% doubles impact without doubling cost.',
+      writeup2:
+        'ERP revenue sorted by account shows the top 5 generate $3.4M — 81% of $4.2M. CRM tickets sorted by module show the top 3 modules generate 78% of 2,840 tickets. Both distributions follow the 80/20 pattern, and both point to the same action: concentrate engineering on the vital few.',
+      writeup3:
+        'Two engineers were reassigned from the bottom 80% of modules (which generated only 22% of tickets) to the top 3 modules. Ticket resolution time on the top modules dropped from 6h to 2h. The Pareto principle turned "we have 2,840 tickets" into "fix 3 modules and eliminate 78% of the load."',
   },
   {
     id: 'threeCs',
@@ -390,6 +434,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Sufi frames every market entry with the 3C\'s — Customer, Company, Competitor — pulling CRM customer profiles, ERP internal capability data, and Web competitor analysis. The triangle ensures strategy isn\'t just "what we want" but what the customer needs, what we can deliver, and what competitors allow.',
+      writeup2:
+        'CRM customer profiles reveal 120 enterprise accounts, and 67% of their support tickets ask for self-serve export — a clear unmet need. ERP internal capability data shows 8 available engineers, an AI platform ready to deploy, and $1.2M in budget. Web competitor analysis shows the incumbent charges $50K/yr, has no API, no self-serve, and an NPS of 41.',
+      writeup3:
+        'The 3C\'s triangle aligned all three perspectives: the customer wants self-serve, the company can build it, and the competitor lacks it. The strategy — build self-serve analytics with AI export — was the intersection of all three. Launching without the 3C\'s check would have risked building something the customer did not want or the competitor already had.',
   },
 
   // ── ARCHITECTURE ──────────────────────────────────────────
@@ -423,6 +471,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Sufi architects multi-region platform strategy through a PESTLE scan — Political data-privacy laws, Economic FX exposure, Social adoption trends, Technological AI shifts, Legal compliance, Environmental carbon targets. Each dimension pulls from a different data feed, ensuring the architecture is future-proofed against macro forces.',
+      writeup2:
+        'Political: GDPR and CCPA compliance gates are required before EU and CA expansion. Economic: 18% of revenue is exposed to CAD/EUR FX volatility — hedging needed. Social: remote-first adoption is up 240% since 2023, shifting the target buyer. Technological: LLM inference costs dropped 90%, making AI agents viable at scale. Legal: SOC 2 Type II audit is due Q3. Environmental: carbon-neutral hosting target by 2026.',
+      writeup3:
+        'The PESTLE scan shaped six architecture decisions: a data-privacy layer for EU/CA, an FX hedging corridor, a remote-first onboarding flow, an AI agent cost model at $0.003/query, a SOC 2 compliance sprint, and a green-hosting migration plan. Each dimension pulled from a different data feed, ensuring the architecture was not just technically sound but future-proofed against macro forces.',
   },
   {
     id: 'porter',
@@ -453,6 +505,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Before committing to a platform architecture, Sufi maps Porter\'s Five Forces using CRM buyer-power data, ERP supplier-cost trends, and Web competitor analysis. The force diagram dictates whether to build for differentiation (high rivalry) or for cost efficiency (high buyer power).',
+      writeup2:
+        'Rivalry is high — 4 direct competitors, 2 well-funded. New entrants are medium — capital barriers are high but AI lowers them. Substitutes are low — no open-source equivalent exists at this depth. Supplier power is medium — cloud provider lock-in is a risk. Buyer power is high — enterprise buyers negotiate hard on price and terms.',
+      writeup3:
+        'High rivalry plus high buyer power dictated a differentiation strategy, not a cost strategy. The architecture was designed around the proprietary agent framework and 20-year domain data — assets competitors cannot replicate. A cost-leadership play would have been crushed by buyer power; differentiation created pricing power and reduced churn.',
   },
 
   // ── SOLUTIONS ─────────────────────────────────────────────
@@ -488,6 +544,10 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Sufi compresses annual goals into 12-week execution cycles, pulling ERP milestone data and CRM pipeline targets into weekly scorecards. Each week has a tangible deliverable tied to a CRM or ERP metric, so "Q3 launch" becomes "Week 4: API v2 in staging, Week 8: beta with 5 accounts, Week 12: GA."',
+      writeup2:
+        'The annual goal — $6M ARR — is compressed into a 12-week cycle. ERP milestones define the technical path: API v2 schema (Week 1–2), staging (Week 4), beta with 5 enterprise accounts (Week 6), dashboard redesign (Week 8), load test and security audit (Week 10), GA launch with 200 accounts migrated (Week 12). CRM pipeline targets define the commercial path alongside.',
+      writeup3:
+        'Each week has a tangible deliverable tied to a CRM or ERP metric. "Q3 launch" — vague and procrastinatable — became "Week 4: API v2 in staging, Week 8: beta with 5 accounts, Week 12: GA." The 12-week compression eliminated the "we have plenty of time" trap that kills annual plans, and the team hit GA on schedule.',
   },
   {
     id: 'goldenTriangle',
@@ -515,5 +575,9 @@ export const FRAMEWORKS = [
     ],
     writeup:
       'Sufi balances the Golden Triangle — Value, Cost, Differentiation — using ERP unit economics and CRM customer-value scores. The triangle ensures every solution delivers customer value at a sustainable cost with a defensible differentiator — not just "cheap" or just "feature-rich" but the right balance of all three.',
+      writeup2:
+        'ERP unit economics show LLM inference at $0.003/query with a 72% gross margin — the cost is sustainable. CRM customer-value data shows AI insights save 12 hours per week per analyst, driving an NPS of 67 — the value is real. A differentiation audit confirms the proprietary agent framework and 20-year data have no market equivalent — the edge is defensible.',
+      writeup3:
+        'All three corners checked: Value (NPS 67, 12h saved), Cost ($0.003/query, 72% margin), Differentiation (no equivalent). The solution — ship AI insights at $0.003/query on the proprietary framework — was locked. The triangle prevents the two common failures: shipping a cheap product nobody values, or shipping a valuable product that erodes margin.',
   },
 ];

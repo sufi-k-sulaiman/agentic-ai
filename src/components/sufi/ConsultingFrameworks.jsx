@@ -18,7 +18,8 @@ export default function ConsultingFrameworks() {
         </h2>
         <p className="text-gray-500 text-sm text-center mb-8 max-w-2xl mx-auto">
           Sufi Khan Sulaiman applies 16 decision frameworks using live CRM, ERP, and Web data.
-          Tap any action button to run a step-by-step workflow and see the framework execute in real time.
+          Each framework below shows a data-driven mockup and a detailed write-up of how Sufi executes it
+          with real business data — from retention rates and revenue figures to support tickets and market signals.
         </p>
 
         {/* Category filter */}
