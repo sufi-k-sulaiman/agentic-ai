@@ -12,6 +12,7 @@ import { personSchema } from '@/components/seo/JsonLd';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 import FaqSection from '@/components/seo/FaqSection';
 import ConsultingFrameworks from '@/components/sufi/ConsultingFrameworks';
+import LeadershipContext from '@/components/sufi/LeadershipContext';
 
 const APP_LINKS = [
   { name: 'Qwirey', icon: Sparkles, path: '/Qwirey', color: 'text-purple-600', bg: 'bg-purple-50' },
@@ -188,6 +189,9 @@ export default function SufiKhanSulaiman() {
             </div>
           </div>
         </section>
+
+        {/* Executive Leadership Context */}
+        <LeadershipContext />
 
         {/* Consulting Frameworks Showcase */}
         <ConsultingFrameworks />
