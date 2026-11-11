@@ -156,11 +156,11 @@ export default function ContactUs() {
                   '@context': 'https://schema.org',
                   '@type': 'ContactPage',
                   name: 'Contact 1cPublishing',
-                  url: 'https://agentic-ai.base44.app/ContactUs',
+                  url: 'https://1cpublishing.com/ContactUs',
                   mainEntity: {
                     '@type': 'Organization',
                     name: '1cPublishing',
-                    url: 'https://agentic-ai.base44.app',
+                    url: 'https://1cpublishing.com',
                     founder: { '@type': 'Person', name: 'Sufi Khan Sulaiman' },
                   },
                 }}

@@ -13,4 +13,4 @@ Disallow: /OAuthConsent
 Disallow: /functions/
 
 # Sitemap
-Sitemap: https://agentic-ai.base44.app/sitemap.xml
+Sitemap: https://1cpublishing.com/sitemap.xml

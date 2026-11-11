@@ -5,11 +5,11 @@ export const SITE_CONFIG = {
   fullName: '1cPublishing AI Platform',
   description:
     'AI-powered platform with smart agents for research, news, learning, games, and productivity — built by technology executive Sufi Khan Sulaiman.',
-  baseUrl: 'https://agentic-ai.base44.app',
+  baseUrl: 'https://1cpublishing.com',
   logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/692729a5f5180fbd43f297e9/a1a505225_1cPublishing-logo.png',
   author: {
     name: 'Sufi Khan Sulaiman',
-    url: 'https://agentic-ai.base44.app/SufiKhanSulaiman',
+    url: 'https://1cpublishing.com/SufiKhanSulaiman',
     externalUrl: 'https://sufikhan.com/',
     jobTitle: 'Technology Executive, E-Commerce Strategist & Digital Automation Specialist',
     description:
@@ -17,7 +17,7 @@ export const SITE_CONFIG = {
   },
   organization: {
     name: '1cPublishing',
-    url: 'https://agentic-ai.base44.app',
+    url: 'https://1cpublishing.com',
     logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/692729a5f5180fbd43f297e9/a1a505225_1cPublishing-logo.png',
     sameAs: [
       'https://1cplatform.com/',
