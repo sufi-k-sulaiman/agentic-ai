@@ -7,6 +7,7 @@ import { seoContent } from '@/components/seo/seoContent';
 import { webApplicationSchema } from '@/components/seo/JsonLd';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 import FaqSection from '@/components/seo/FaqSection';
+import { base44 } from '@/api/base44Client';
 
 export default function Appstore() {
 
@@ -144,6 +145,7 @@ export default function Appstore() {
                                         target="_blank" 
                                         rel="noopener noreferrer"
                                         className="block mt-auto"
+                                        onClick={() => base44.analytics.track({ eventName: 'app_store_click', properties: { app_name: app.name } })}
                                     >
                                         <Button className="w-full text-white font-semibold py-2.5 sm:py-3 text-sm sm:text-base" style={{ backgroundColor: '#6209e6' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#5507C8'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#6209e6'}>
                                             <Download className="w-4 h-4 mr-2" />

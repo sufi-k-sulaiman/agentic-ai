@@ -30,6 +30,8 @@ const ContactCard = ({ icon: Icon, title, description, email, buttonText, color,
                 status: 'new'
             });
 
+            base44.analytics.track({ eventName: 'contact_message_sent', properties: { contact_type: contactType } });
+
             setShowSuccess(true);
             setSubject('');
             setMessage('');
