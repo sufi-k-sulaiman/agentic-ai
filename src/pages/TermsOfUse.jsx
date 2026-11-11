@@ -19,6 +19,7 @@ export default function TermsOfUse() {
                 title="Terms of Use"
                 description="Terms of Use for 1cPublishing.com and all applications. Review our user agreement and service terms."
                 keywords="1cPublishing Terms of Use, user agreement, terms and conditions, service terms"
+                canonicalPath="/TermsOfUse"
             />
             <div className="min-h-screen bg-gray-50 p-4 md:p-8">
                 <div className="max-w-4xl mx-auto">

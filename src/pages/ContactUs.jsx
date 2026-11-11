@@ -151,6 +151,19 @@ export default function ContactUs() {
                 title="Contact Us"
                 description="Connect with us for 1cPublishing support, sales inquiries, feedback, and assistance with all applications."
                 keywords="1cPublishing contact, support, sales, feedback, help desk, customer service"
+                canonicalPath="/ContactUs"
+                jsonLd={{
+                  '@context': 'https://schema.org',
+                  '@type': 'ContactPage',
+                  name: 'Contact 1cPublishing',
+                  url: 'https://agentic-ai.base44.app/ContactUs',
+                  mainEntity: {
+                    '@type': 'Organization',
+                    name: '1cPublishing',
+                    url: 'https://agentic-ai.base44.app',
+                    founder: { '@type': 'Person', name: 'Sufi Khan Sulaiman' },
+                  },
+                }}
             />
             <div className="min-h-screen bg-gray-50 p-4 md:p-8">
             <div className="max-w-5xl mx-auto">

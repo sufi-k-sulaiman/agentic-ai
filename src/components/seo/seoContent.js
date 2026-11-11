@@ -181,4 +181,114 @@ export const seoContent = {
       content: 'Tasks sync in real time, so teams can collaborate on shared boards and see updates instantly. Project managers can assign work, monitor progress, and ensure nothing falls through the cracks, all from a single intuitive interface.',
     },
   ],
+  Home: [
+    {
+      title: 'One AI Platform for Research, Learning and Productivity',
+      content:
+        '1cPublishing brings research, news, education, analytics and productivity into a single AI-powered workspace. Instead of subscribing to a dozen disconnected tools, you open one platform where an AI research assistant, a news aggregator, a mind-mapping studio and a Kanban task manager all share the same foundation. Every application is designed to reduce the time between a question and a usable answer, so professionals, students and small teams can focus on decisions rather than on juggling tabs.',
+    },
+    {
+      title: 'Autonomous AI Agents That Do the Work',
+      content:
+        'The platform is built around agentic AI: assistants that plan, search, read documents and produce structured output on your behalf. Ask a question in natural language and the agent retrieves live sources, compares them, and returns a cited summary, a comparison table or a visual dashboard. This is the difference between a search engine that hands you links and an AI platform that hands you finished work you can act on immediately.',
+    },
+    {
+      title: 'Built for Real Workflows, Not Demos',
+      content:
+        'Each tool on the platform maps to a concrete job: Qwirey for sourced research, News for monitoring current events, Learning for structured study, Intelligence for scenario analysis, Games for vocabulary and science practice, Tasks for project tracking and Notes for capturing ideas. Because they share one design system and one data layer, work moves between them without copy-paste, and your saved material remains available the next time you return.',
+    },
+    {
+      title: 'Enterprise Engineering Behind Everyday Tools',
+      content:
+        'The platform is designed and developed by Sufi Khan Sulaiman, a technology executive with more than 20 years of experience building large-scale distributed systems and leading global engineering teams. That background shapes the product: careful information architecture, predictable performance under load, and a preference for reliable, explainable AI over novelty. The result is consumer-friendly software with enterprise-grade engineering discipline underneath.',
+    },
+  ],
+  Markets: [
+    {
+      title: 'AI-Assisted Stock Analysis',
+      content:
+        'MarketsPro turns raw market data into readable analysis. Rather than scanning dozens of financial sites for price action, valuation multiples and analyst commentary, you open one screen and see a structured view of each company. The AI summarises fundamentals, technicals and valuation in plain language, then highlights the signals that matter most for the sector, so both experienced investors and newcomers can form a view quickly.',
+    },
+    {
+      title: 'Screening and Filtering Across Thousands of Stocks',
+      content:
+        'Use search and filter chips to narrow the universe by sector, market capitalisation, price movement and performance. Whether you are hunting for large-cap technology leaders, dividend payers or high-growth small caps, the filters update results instantly, letting you move from a broad market overview to a focused shortlist without leaving the page. Saved views make repeatable research faster each time you return.',
+    },
+    {
+      title: 'Comparing Companies With Investment Frameworks',
+      content:
+        'Individual metrics rarely tell a complete story, so the platform supports side-by-side stock comparison built on recognised investment frameworks. Weigh growth against profitability, balance-sheet strength against valuation, and momentum against risk. Seeing two companies scored on the same criteria removes the ambiguity of comparing numbers from different contexts and makes the trade-offs explicit.',
+    },
+    {
+      title: 'Market Context and Daily Movers',
+      content:
+        'A live ticker and market overview keep you oriented before you drill into any single name. Top movers, sector rotation and index performance provide the context that individual stock pages cannot. For investors who check the market briefly each day, this is a fast way to understand what changed, why it might matter, and which positions deserve a closer look.',
+    },
+  ],
+  Notes: [
+    {
+      title: 'AI-Assisted Note Taking',
+      content:
+        'Notes combines a fast, distraction-free editor with AI assistance. Capture a thought in seconds, then ask the assistant to expand it into an outline, tighten it into a summary, or rewrite it for a different audience. This is useful for meeting notes, research fragments, drafts and study material where the first version is rarely the final one.',
+    },
+    {
+      title: 'Organise With Tags, Colours and Pinning',
+      content:
+        'Every note can be tagged, colour-coded and pinned, so important material stays at the top of your workspace. Tags create lightweight, flexible groupings that work across projects, while colour coding gives an immediate visual signal. Unlike rigid folder structures, this approach scales from a handful of notes to hundreds without becoming a filing chore.',
+    },
+    {
+      title: 'Generate Images and Visuals Inside a Note',
+      content:
+        'Notes can generate AI images directly inside the editor, which is useful for mood boards, article illustrations, presentation drafts and teaching material. Instead of exporting text to another tool and hunting for stock photography, describe the visual you need and place it alongside the writing it supports.',
+    },
+    {
+      title: 'A Durable Home for Ideas and Research',
+      content:
+        'Because notes persist and are searchable, the workspace becomes a personal knowledge base rather than a scratchpad. Revisit earlier research, reuse paragraphs in new documents, and connect ideas captured weeks apart. Combined with the platform research tools, it closes the loop between finding information and keeping it.',
+    },
+  ],
+  ResumeBuilder: [
+    {
+      title: 'AI Resume Builder for Faster, Stronger Applications',
+      content:
+        'ResumeBuilder turns your experience, skills and target role into a polished, professional resume. Enter your background once, choose a template, and let the AI draft accomplishment-focused bullet points that emphasise measurable outcomes instead of generic responsibilities. This shortens the drafting process from hours to minutes while producing stronger, more specific writing.',
+    },
+    {
+      title: 'ATS Keyword Analysis and Optimisation',
+      content:
+        'Most large employers screen applications with an applicant tracking system before a human reads them. ResumeBuilder analyses your resume against the job description and identifies missing or underrepresented keywords, then suggests where to add them naturally. The goal is not keyword stuffing but alignment, so your genuine experience is expressed in the language the employer is searching for.',
+    },
+    {
+      title: 'Professional Templates That Stay Readable',
+      content:
+        'Templates are designed for clarity: consistent typography, sensible section hierarchy and clean spacing that survives both human review and automated parsing. You can switch templates without re-entering content, which makes it practical to maintain a tailored version for each application without duplicating work.',
+    },
+    {
+      title: 'Export, Iterate and Reuse',
+      content:
+        'Preview the finished document, adjust any section, and export when it is ready. Because your source information is stored separately from the layout, you can return later to add a role, update metrics or produce a variant for a different industry. That separation keeps one authoritative career record while allowing many tailored outputs.',
+    },
+  ],
+  StockComparison: [
+    {
+      title: 'Side-by-Side Stock Comparison',
+      content:
+        'StockComparison places two or more companies on the same screen so differences are visible at a glance. Price performance, valuation multiples, margins, growth rates and balance-sheet measures line up in one table, removing the mental arithmetic of comparing figures scattered across separate pages. It is the fastest way to answer the practical question: which of these businesses is the better investment at today prices?',
+    },
+    {
+      title: 'Frameworks From Legendary Investors',
+      content:
+        'The comparison view applies well-known investment frameworks — quality, value, growth and momentum — to each company. Rather than inventing a single opaque score, the tool shows how each business performs against each lens, so you can weight the criteria that match your own strategy. A value investor and a growth investor can use the same screen and reach different, equally defensible conclusions.',
+    },
+    {
+      title: 'Fundamentals and Valuation in One View',
+      content:
+        'Revenue growth, earnings, free cash flow, margins, debt levels, price-to-earnings and price-to-sales are presented together with short explanations of what each measure implies. This context matters: a high multiple is expensive for a mature industrial company but may be reasonable for a business compounding revenue quickly. The tool helps you judge each metric against the company it describes.',
+    },
+    {
+      title: 'Clearer, Better-Documented Decisions',
+      content:
+        'A structured comparison produces a record of why a choice was made, not just what was chosen. Review the comparison again after results are reported to test whether the original reasoning held. Over time this builds a disciplined habit of evidence-based investing rather than reacting to headlines.',
+    },
+  ],
 };

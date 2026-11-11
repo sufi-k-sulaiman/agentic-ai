@@ -13,6 +13,10 @@ import { base44 } from '@/api/base44Client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
+import FaqSection from '@/components/seo/FaqSection';
+import { webApplicationSchema, breadcrumbSchema } from '@/components/seo/JsonLd';
 
 const TEMPLATES = [
     { id: 'daily', name: 'Daily', icon: Calendar, color: '#6B4EE6', content: '<h2>Daily Journal</h2><p>Date: [Today]</p><h3>Goals for Today</h3><ul><li></li></ul><h3>Notes</h3><p></p><h3>Reflection</h3><p></p>' },
@@ -261,9 +265,19 @@ export default function Notes() {
     return (
         <>
             <PageMeta 
-                title="Notes - AI Writing Assistant"
-                description="AI-powered notes help organize ideas, streamline writing, and boost productivity with smart templates and AI generation."
-                keywords="AI notes, note taking, smart notes, writing assistant, productivity notes"
+                title="Notes - AI Note-Taking and Writing Assistant"
+                description="Capture ideas in a fast editor, then let AI expand, summarise or rewrite them. Organise notes with tags, colours and pinning, and generate images inside any note."
+                keywords="AI notes, note taking app, smart notes, AI writing assistant, note organisation, tags, productivity notes, AI image generation"
+                canonicalPath="/Notes"
+                jsonLd={[
+                  webApplicationSchema({
+                    name: 'Notes — AI Note-Taking and Writing',
+                    description: 'AI-assisted note-taking with tags, colour coding, pinning and in-editor image generation.',
+                    url: '/Notes',
+                    category: 'ProductivityApplication',
+                  }),
+                  breadcrumbSchema([{ name: 'Notes', path: '/Notes' }]),
+                ]}
             />
             <div className="min-h-screen bg-gray-50 p-4 md:p-6">
                 <div className="max-w-7xl mx-auto">
@@ -470,6 +484,8 @@ export default function Notes() {
                     </div>
                 </DialogContent>
             </Dialog>
+            <SeoContentBlocks blocks={seoContent.Notes} />
+            <FaqSection pageKey="Notes" />
         </>
     );
 }

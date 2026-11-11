@@ -148,6 +148,8 @@ export default function Settings() {
                 title="Settings - Preferences"
                 description="Personalized usability settings to simplify customization and empower every user experience with accessibility options."
                 keywords="settings, preferences, accessibility, usability, customization, theme settings"
+                canonicalPath="/Settings"
+                robots="noindex, nofollow"
             />
             <div className="p-4 md:p-8 max-w-3xl mx-auto">
             <h1 className="text-2xl font-bold text-gray-800 mb-1">Settings</h1>

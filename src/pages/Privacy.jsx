@@ -10,6 +10,7 @@ export default function Privacy() {
                 title="Privacy Policy"
                 description="Learn how 1cPublishing collects, uses, and protects your personal information and data across all platforms."
                 keywords="privacy policy, data protection, 1cPublishing privacy, user data, GDPR, CCPA"
+                canonicalPath="/Privacy"
             />
             <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-4xl mx-auto">

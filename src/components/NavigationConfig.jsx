@@ -25,6 +25,7 @@ export const NAVIGATION_ITEMS = menuItems.map(item => ({
 }));
 
 export const footerLinks = [
+    { label: 'Sitemap', href: '/SiteMap' },
     { label: 'Terms of Use', href: '/TermsOfUse' },
     { label: 'Contact Us', href: '/ContactUs' },
     { label: 'Sufi Khan Sulaiman', href: '/SufiKhanSulaiman' },

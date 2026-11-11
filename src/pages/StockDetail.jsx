@@ -383,8 +383,9 @@ export default function StockDetail() {
         <>
             <PageMeta 
                 title={`${stock.ticker} - ${stock.name} Stock Analysis`}
-                description={`Comprehensive AI-powered analysis for ${stock.name} (${stock.ticker}). View fundamentals, technicals, valuation, and investment insights.`}
-                keywords={`${stock.ticker}, ${stock.name}, stock analysis, ${stock.sector}, ${stock.industry}`}
+                description={`AI-powered analysis for ${stock.name} (${stock.ticker}): fundamentals, technicals, valuation and investment insight for the ${stock.sector} sector.`}
+                keywords={`${stock.ticker}, ${stock.name}, ${stock.name} stock, stock analysis, ${stock.sector}, ${stock.industry}, valuation, fundamentals`}
+                canonicalPath="/StockDetail"
             />
             <div className="min-h-screen bg-gray-50">
                 {/* Header with Back Button */}

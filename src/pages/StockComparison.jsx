@@ -6,6 +6,10 @@ import { ArrowLeft, Award, DollarSign, FileText, Loader2, TrendingUp, Shield, Ta
 import { Button } from "@/components/ui/button";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis, LineChart, Line } from 'recharts';
 import PageMeta from '@/components/PageMeta';
+import FaqSection from '@/components/seo/FaqSection';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
+import { webApplicationSchema, breadcrumbSchema } from '@/components/seo/JsonLd';
 
 export default function StockComparison() {
     const navigate = useNavigate();
@@ -339,8 +343,19 @@ export default function StockComparison() {
     return (
         <>
             <PageMeta 
-                title="Stock Comparison - AI Analysis"
-                description="Compare multiple stocks across legendary investment frameworks, financials, and market data."
+                title="Stock Comparison - Side-by-Side Investment Analysis"
+                description="Compare companies on the same criteria: valuation, growth, margins, balance-sheet strength and performance. Apply quality, value, growth and momentum frameworks to see trade-offs clearly."
+                keywords="stock comparison, compare stocks, investment frameworks, valuation multiples, fundamental analysis, growth vs value, stock screening, market research"
+                canonicalPath="/StockComparison"
+                jsonLd={[
+                  webApplicationSchema({
+                    name: 'Stock Comparison — Side-by-Side Analysis',
+                    description: 'Compare companies on valuation, growth, quality and momentum frameworks.',
+                    url: '/StockComparison',
+                    category: 'FinanceApplication',
+                  }),
+                  breadcrumbSchema([{ name: 'Stock Comparison', path: '/StockComparison' }]),
+                ]}
             />
             <div className="min-h-screen bg-gray-50">
                 <div className="bg-white border-b border-gray-200 sticky top-0 z-20">
@@ -394,6 +409,8 @@ export default function StockComparison() {
                     {activeTab === 'news' && renderNewsComparison()}
                 </div>
             </div>
+            <SeoContentBlocks blocks={seoContent.StockComparison} />
+            <FaqSection pageKey="StockComparison" />
         </>
     );
 }

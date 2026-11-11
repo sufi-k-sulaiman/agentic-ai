@@ -6,6 +6,8 @@ import { Sparkles, Radio, Brain, BarChart3, GraduationCap, ListTodo, Lightbulb, 
 import { organizationSchema, websiteSchema } from '@/components/seo/JsonLd';
 import Breadcrumbs from '@/components/seo/Breadcrumbs';
 import FaqSection from '@/components/seo/FaqSection';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
 
 const pages = [
     { name: 'Qwirey', page: 'Qwirey', icon: Sparkles, description: 'Your all-in-one Ai assistant, powered by Qwirey', color: '#6209e6', colorEnd: '#4f46e5' },
@@ -26,10 +28,10 @@ export default function HomePage() {
     return (
         <>
             <PageMeta
-                title="Home - AI Platform"
-                description="AI-powered platform with autonomous AI agents for research, news, learning, games, and productivity. Built by technology executive Sufi Khan Sulaiman to boost efficiency across all domains."
-                keywords="1cPublishing, AI platform, AI agents, productivity tools, smart automation, Sufi Khan Sulaiman, AI research, educational games"
-                canonicalPath="/"
+                title="AI Platform for Research, News, Learning and Productivity"
+                description="One AI-powered workspace for research, news aggregation, education, market analysis and productivity. Autonomous AI agents built by technology executive Sufi Khan Sulaiman."
+                keywords="AI platform, AI agents, agentic AI, AI research assistant, AI news aggregator, AI learning platform, productivity tools, 1cPublishing, Sufi Khan Sulaiman"
+                canonicalPath="/Home"
                 jsonLd={[organizationSchema(), websiteSchema()]}
             />
             <div className="p-4 md:p-8">
@@ -67,6 +69,7 @@ By combining autonomy, speed, collaboration, and adaptive learning, Agentic Ai p
                 </div>
             </div>
         </div>
+        <SeoContentBlocks blocks={seoContent.Home} />
         <FaqSection pageKey="Home" />
         </>
     );

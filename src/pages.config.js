@@ -26,6 +26,7 @@ import Appstore from './pages/Appstore';
 import StockDetail from './pages/StockDetail';
 import StockComparison from './pages/StockComparison';
 import SufiKhanSulaiman from './pages/SufiKhanSulaiman';
+import SiteMap from './pages/SiteMap';
 import __Layout from './Layout.jsx';
 
 
@@ -58,6 +59,7 @@ export const PAGES = {
     "StockDetail": StockDetail,
     "StockComparison": StockComparison,
     "SufiKhanSulaiman": SufiKhanSulaiman,
+    "SiteMap": SiteMap,
 }
 
 export const pagesConfig = {

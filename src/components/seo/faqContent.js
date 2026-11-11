@@ -243,4 +243,114 @@ export const faqContent = {
         'His expertise includes E-Commerce & UX (building digital storefronts), Artificial Intelligence (creating autonomous AI agents), Cloud Architecture (Java, PHP, TypeScript), and Mentorship (developing educational programs for the next generation of business leaders).',
     },
   ],
+  Geospatial: [
+    {
+      question: 'What is the Geospatial Intelligence platform?',
+      answer:
+        'It is an AI-powered spatial analytics workspace for exploring geographic data. It combines interactive maps, country comparisons, infrastructure and resource layers, and predictive models so analysts can understand how location affects markets, logistics, population and environmental risk.',
+    },
+    {
+      question: 'What kinds of data can I explore on the map?',
+      answer:
+        'The platform covers country-level indicators, infrastructure and asset locations, natural resources, trade and logistics corridors, demographic statistics and environmental metrics. Layers can be combined so a single view shows how geography, economy and infrastructure interact.',
+    },
+    {
+      question: 'Who uses geospatial intelligence analysis?',
+      answer:
+        'It is used by analysts, supply-chain and expansion teams, researchers, policy students and investors who need to compare regions objectively. Typical questions include where to locate operations, which markets are growing, and how infrastructure gaps affect delivery times and cost.',
+    },
+    {
+      question: 'Does the platform provide AI-generated analysis?',
+      answer:
+        'Yes. Beyond displaying map layers, the platform generates scenario analysis, anomaly detection and comparative commentary, translating raw spatial data into written insight that can be used in reports and planning documents.',
+    },
+  ],
+  Markets: [
+    {
+      question: 'What is MarketsPro?',
+      answer:
+        'MarketsPro is an AI-assisted stock analysis tool. It presents fundamentals, technicals and valuation for thousands of listed companies, with plain-language summaries that explain what the numbers mean for a given sector.',
+    },
+    {
+      question: 'Can I filter stocks by sector or market capitalisation?',
+      answer:
+        'Yes. Search and filter chips let you narrow the universe by sector, market capitalisation, price movement and performance, so you can move from a broad market view to a focused shortlist quickly.',
+    },
+    {
+      question: 'Does MarketsPro give buy or sell recommendations?',
+      answer:
+        'No. The platform provides analysis and context, not personalised financial advice or trade recommendations. It is an educational research tool, and investment decisions and their consequences remain your own.',
+    },
+    {
+      question: 'How does stock comparison work?',
+      answer:
+        'You can place several companies side by side and compare them on the same criteria, including valuation multiples, growth, margins, balance-sheet strength and performance. Applying consistent criteria to every company makes trade-offs explicit and easier to evaluate.',
+    },
+  ],
+  Notes: [
+    {
+      question: 'What is the Notes application?',
+      answer:
+        'Notes is an AI-assisted note-taking workspace. It provides a fast editor with tags, colours and pinning, plus AI actions that can expand, summarise or rewrite your text and generate images inside a note.',
+    },
+    {
+      question: 'Can the AI rewrite or summarise my notes?',
+      answer:
+        'Yes. Select a note and ask the assistant to shorten it into a summary, expand it into an outline, or rewrite it in a different tone. This is useful for turning rough meeting notes into a clear record or a first draft into a finished paragraph.',
+    },
+    {
+      question: 'How are notes organised?',
+      answer:
+        'Notes can carry multiple tags and a colour, and important notes can be pinned. Tags create flexible groupings that work across projects, which scales better than a rigid folder hierarchy as the number of notes grows.',
+    },
+    {
+      question: 'Are my notes saved between visits?',
+      answer:
+        'Yes. Notes are stored to your account, so they remain available when you return from the same or another device, and they can be searched later as a personal knowledge base.',
+    },
+  ],
+  ResumeBuilder: [
+    {
+      question: 'What is ResumeBuilder?',
+      answer:
+        'ResumeBuilder is an AI-assisted resume tool. You enter your experience, skills and target role, and it drafts a professional resume with accomplishment-focused bullet points and a clean, readable layout.',
+    },
+    {
+      question: 'What is ATS analysis and why does it matter?',
+      answer:
+        'Applicant tracking systems screen resumes before a recruiter reads them. ResumeBuilder compares your resume with the job description, flags missing keywords and suggests where to add them naturally, improving the chance your application is seen by a person.',
+    },
+    {
+      question: 'Can I switch resume templates?',
+      answer:
+        'Yes. Content is stored separately from layout, so you can change templates at any time without re-entering your information, and keep a tailored version for different roles.',
+    },
+    {
+      question: 'How do I get my finished resume?',
+      answer:
+        'Preview the document, adjust any section, then export it from the Export tab. You can return later to update a role or add metrics and produce an updated version.',
+    },
+  ],
+  StockComparison: [
+    {
+      question: 'What does StockComparison do?',
+      answer:
+        'It places two or more companies side by side and compares them on the same criteria: price performance, valuation multiples, margins, growth and balance-sheet measures, so differences are visible without cross-referencing separate pages.',
+    },
+    {
+      question: 'Which investment frameworks are used?',
+      answer:
+        'The comparison applies established lenses such as quality, value, growth and momentum. Each company is assessed against every lens so you can weight the criteria that match your own strategy rather than relying on a single opaque score.',
+    },
+    {
+      question: 'Is this investment advice?',
+      answer:
+        'No. StockComparison is an educational research tool that organises public market data and explains the metrics. It does not provide personalised advice or recommendations, and all investment decisions remain your own.',
+    },
+    {
+      question: 'Why compare stocks instead of analysing one at a time?',
+      answer:
+        'Comparing on identical criteria removes the bias that comes from judging each company in a different context. It also creates a written rationale you can revisit after results are reported, which supports more disciplined decisions over time.',
+    },
+  ],
 };

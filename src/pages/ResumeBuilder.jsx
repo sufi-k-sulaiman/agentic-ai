@@ -12,6 +12,11 @@ import { TemplateSelector, RESUME_TEMPLATES } from '@/components/resume/ResumeTe
 import ResumePreview from '@/components/resume/ResumePreview';
 import ATSAnalysis from '@/components/resume/ATSAnalysis';
 import ExportOptions from '@/components/resume/ExportOptions';
+import PageMeta from '@/components/PageMeta';
+import FaqSection from '@/components/seo/FaqSection';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
+import { webApplicationSchema, breadcrumbSchema } from '@/components/seo/JsonLd';
 
 export default function ResumeBuilder() {
     useEffect(() => {
@@ -71,6 +76,21 @@ export default function ResumeBuilder() {
 
     return (
         <div className="p-4 md:p-6">
+            <PageMeta
+                title="Resume Builder - AI Resume Writing and ATS Analysis"
+                description="Turn your career history into an ATS-optimised resume. AI drafts accomplishment-focused bullet points, analyses keywords against the job posting, and exports through clean, readable templates."
+                keywords="AI resume builder, resume writing, ATS optimisation, applicant tracking system, resume keywords, job application, professional resume templates, career tools"
+                canonicalPath="/ResumeBuilder"
+                jsonLd={[
+                  webApplicationSchema({
+                    name: 'ResumeBuilder — AI Resume and ATS Analysis',
+                    description: 'AI-assisted resume drafting with applicant tracking system keyword analysis and export-ready templates.',
+                    url: '/ResumeBuilder',
+                    category: 'BusinessApplication',
+                  }),
+                  breadcrumbSchema([{ name: 'Resume Builder', path: '/ResumeBuilder' }]),
+                ]}
+            />
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
                     <div className="flex items-center gap-3">
@@ -136,6 +156,9 @@ export default function ResumeBuilder() {
                     <div className="p-4"><ResumePreview data={generatedResume} templateId={selectedTemplate} className="mx-auto max-w-2xl" /></div>
                 </DialogContent>
             </Dialog>
+
+            <SeoContentBlocks blocks={seoContent.ResumeBuilder} />
+            <FaqSection pageKey="ResumeBuilder" />
         </div>
     );
 }

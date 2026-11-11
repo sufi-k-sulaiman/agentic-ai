@@ -78,6 +78,8 @@ export default function SearchResults() {
                 title="Search Results"
                 description="AI-powered search results with intelligent suggestions and related topics across all platform features."
                 keywords="search, AI search, intelligent search, search results, platform search"
+                canonicalPath="/SearchResults"
+                robots="noindex, follow"
             />
             <PageLayout activePage="" onSearch={handleSearch} searchPlaceholder="Search anything..." showSearch={true}>
             <div className="p-4 md:p-8 max-w-4xl mx-auto">

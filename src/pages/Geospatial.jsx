@@ -18,6 +18,8 @@ import AnalysisFrameworks from '@/components/geospatial/AnalysisFrameworks';
 import DynamicCardContent from '@/components/geospatial/DynamicCardContent';
 import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
 import { seoContent } from '@/components/seo/seoContent';
+import FaqSection from '@/components/seo/FaqSection';
+import { webApplicationSchema, breadcrumbSchema } from '@/components/seo/JsonLd';
 
 // Group categories by tab
 const MAP_TABS = [
@@ -94,9 +96,19 @@ export default function Geospatial() {
     return (
         <>
             <PageMeta 
-                title="Geospatial Intelligence"
-                description="Geospatial intelligence platform with AI-powered spatial analytics, mapping, and environmental data visualization."
-                keywords="geospatial, GIS, mapping, spatial analysis, satellite imagery, environmental data"
+                title="Geospatial Intelligence - Spatial Analytics and Mapping"
+                description="Explore country comparisons, infrastructure, resources and demographic layers on interactive maps, with AI-generated spatial analysis, scenario modeling and anomaly detection."
+                keywords="geospatial intelligence, GIS platform, spatial analysis, interactive maps, country comparison, infrastructure mapping, resource data, location analytics, environmental data"
+                canonicalPath="/Geospatial"
+                jsonLd={[
+                  webApplicationSchema({
+                    name: 'Geospatial Intelligence — Spatial Analytics',
+                    description: 'Interactive maps, country comparisons and AI-driven spatial analysis for regional and infrastructure research.',
+                    url: '/Geospatial',
+                    category: 'BusinessApplication',
+                  }),
+                  breadcrumbSchema([{ name: 'Geospatial Intelligence', path: '/Geospatial' }]),
+                ]}
             />
             <div className="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100">
             {/* Top Row - Stats Left, Use Case Selector Right */}
@@ -347,6 +359,7 @@ export default function Geospatial() {
             )}
             </div>
             <SeoContentBlocks blocks={seoContent.Geospatial} />
+            <FaqSection pageKey="Geospatial" />
         </>
     );
 }

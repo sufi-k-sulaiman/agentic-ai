@@ -12,6 +12,10 @@ import FilterChips from '@/components/markets/FilterChips';
 import MarketOverviewChart from '@/components/markets/MarketOverviewChart';
 import { EmptyState, LoadingState } from '@/components/ErrorDisplay';
 import { base44 } from '@/api/base44Client';
+import SeoContentBlocks from '@/components/seo/SeoContentBlocks';
+import { seoContent } from '@/components/seo/seoContent';
+import FaqSection from '@/components/seo/FaqSection';
+import { webApplicationSchema, breadcrumbSchema } from '@/components/seo/JsonLd';
 
 const PRESET_FILTERS = [
     { id: 'all', label: 'All Stocks', icon: BarChart3 },
@@ -1144,9 +1148,19 @@ Use real market data. Return ALL ${batch.length} stocks.`,
     return (
         <>
             <PageMeta 
-                title="MarketsPro - AI Stock Analysis"
-                description="MarketsPro delivers automated insights with AI stock predictions to empower smarter trading and investment decisions."
-                keywords="MarketsPro, AI stock predictions, stock analysis, trading insights, market intelligence"
+                title="MarketsPro - AI Stock Analysis and Market Research"
+                description="Analyse thousands of stocks with AI-assisted fundamentals, technicals and valuation summaries. Filter by sector and market cap, track daily movers and compare companies side by side."
+                keywords="AI stock analysis, stock market research, MarketsPro, stock screener, fundamentals, valuation, technical analysis, market movers, investment research"
+                canonicalPath="/Markets"
+                jsonLd={[
+                  webApplicationSchema({
+                    name: 'MarketsPro — AI Stock Analysis',
+                    description: 'AI-assisted stock analysis with fundamentals, technicals, valuation and market screening.',
+                    url: '/Markets',
+                    category: 'FinanceApplication',
+                  }),
+                  breadcrumbSchema([{ name: 'Markets', path: '/Markets' }]),
+                ]}
             />
             <div className="p-3 md:p-6">
                 <div className="mb-3 md:mb-4 -mx-3 md:-mx-6 -mt-3 md:-mt-6"><StockTicker stocks={topMovers} /></div>
@@ -1274,6 +1288,8 @@ Use real market data. Return ALL ${batch.length} stocks.`,
             )}
 
             </div>
+            <SeoContentBlocks blocks={seoContent.Markets} />
+            <FaqSection pageKey="Markets" />
         </>
     );
 }

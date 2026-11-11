@@ -1,5 +1,15 @@
 User-agent: *
 Allow: /
+
+# Private application tools and utility pages (also marked noindex on-page)
+Disallow: /Settings
+Disallow: /SearchResults
+Disallow: /Search
+Disallow: /Comms
+Disallow: /Template
+Disallow: /DashboardComponents
+Disallow: /TestFunctions
+Disallow: /OAuthConsent
 Disallow: /functions/
 
 # Sitemap
